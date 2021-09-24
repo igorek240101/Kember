@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
-namespace KemberBackModule
+namespace Kember
 {
-    public class Class1
+    public interface IMetric
     {
+        public object RunMetric(Assembly assembly, object args);
     }
 }
