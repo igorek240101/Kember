@@ -16,7 +16,18 @@ namespace GUIPrototype
     {
         public IntroForm()
         {
+            User user = AppDbContext.db.Users.FirstOrDefault(t => t.Name == Environment.UserName);
             InitializeComponent();
+            if (true)
+            {
+                label1.Text = "Добро пожаловть!";
+                label2.Text = Environment.UserName;
+                progressBar1.Visible = false;
+            }
+            else
+            {
+
+            }
         }
     }
 }
