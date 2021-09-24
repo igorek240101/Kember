@@ -38,9 +38,9 @@ namespace Kember
     {
         public static AppDbContext db = new AppDbContext();
 
-        DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
 
-        DbSet<Log> Logs { get; set; }
+        public DbSet<Log> Logs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
