@@ -31,7 +31,6 @@ namespace GUIPrototype
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -57,7 +56,6 @@ namespace GUIPrototype
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.AutoScroll = true;
-            this.splitContainer1.Panel1.Controls.Add(this.button4);
             this.splitContainer1.Panel1.Controls.Add(this.button3);
             this.splitContainer1.Panel1.SizeChanged += new System.EventHandler(this.splitContainer1_Panel1_SizeChanged);
             // 
@@ -72,16 +70,6 @@ namespace GUIPrototype
             this.splitContainer1.SplitterDistance = 318;
             this.splitContainer1.TabIndex = 0;
             // 
-            // button4
-            // 
-            this.button4.BackgroundImage = global::GUIPrototype.Properties.Resources.save;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button4.Location = new System.Drawing.Point(196, 352);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(50, 50);
-            this.button4.TabIndex = 1;
-            this.button4.UseVisualStyleBackColor = true;
-            // 
             // button3
             // 
             this.button3.BackgroundImage = global::GUIPrototype.Properties.Resources.play;
@@ -91,6 +79,7 @@ namespace GUIPrototype
             this.button3.Size = new System.Drawing.Size(50, 50);
             this.button3.TabIndex = 0;
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -140,6 +129,7 @@ namespace GUIPrototype
             this.menuStrip1.Size = new System.Drawing.Size(78, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // History
             // 
@@ -189,7 +179,6 @@ namespace GUIPrototype
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
     }
 }

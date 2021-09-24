@@ -23,7 +23,7 @@ namespace GUIPrototype
             User user = AppDbContext.db.Users.FirstOrDefault(t => t.Name == "Igor");
             InitializeComponent();
             label2.Text = Environment.UserName;
-            if (false)
+            if (user == null)
             {
                 label1.Text = "Добро пожаловать!";
                 label3.Text = "Придумайте ключ безопастности (число)";
@@ -38,14 +38,23 @@ namespace GUIPrototype
                 timer1.Start();
             }
 
-            label1.Location = new Point(Width / 2 - label1.Width/2, 20);
+            label1.Location = new Point(Width / 2 - label1.Width / 2, 20);
             label2.Location = new Point(Width / 2 - label2.Width / 2, 70);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            goodLoad = true;
-            Close();
+            int key;
+            if (int.TryParse(textBox1.Text, out key))
+            {
+                KemberBackModule.Registration(Environment.UserName, Convert.ToString(key));
+                goodLoad = true;
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Ввдеите число", "Ошибка!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
