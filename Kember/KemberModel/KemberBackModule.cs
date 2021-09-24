@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace Kember
 {
@@ -53,10 +54,12 @@ namespace Kember
             return null;
         }
 
-        public static bool Login()
+        public static void Registration(string name, string key)
         {
-            Console.WriteLine(Environment.UserName);
-            return false;
+            SHA512Managed sha = new SHA512Managed();
+            string hash = Encoding.UTF8.GetString(sha.ComputeHash(Encoding.UTF8.GetBytes(key)));
+            AppDbContext.db.Users.Add(new User() { Name = name, OpenKey = hash });
+            AppDbContext.db.SaveChanges();
         }
     }
 }
