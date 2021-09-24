@@ -17,7 +17,8 @@ namespace GUIPrototype
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new IntroForm());
+            if(IntroForm.goodLoad) Application.Run(new Form1());
         }
     }
 }

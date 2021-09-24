@@ -18,8 +18,6 @@ namespace GUIPrototype
 
         public Form1()
         {
-            IntroForm intro = new IntroForm();
-            intro.Show();
             InitializeComponent();
             Text = Environment.UserName;
             splitContainer1_Panel2_SizeChanged(null, null);

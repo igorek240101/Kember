@@ -8,25 +8,54 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Kember;
-using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
 
 namespace GUIPrototype
 {
     public partial class IntroForm : Form
     {
+        int count = 0;
+
+        public static bool goodLoad = false;
+
         public IntroForm()
         {
-            User user = AppDbContext.db.Users.FirstOrDefault(t => t.Name == Environment.UserName);
+            User user = AppDbContext.db.Users.FirstOrDefault(t => t.Name == "Igor");
             InitializeComponent();
-            if (true)
+            label2.Text = Environment.UserName;
+            if (false)
             {
-                label1.Text = "Добро пожаловть!";
-                label2.Text = Environment.UserName;
+                label1.Text = "Добро пожаловать!";
+                label3.Text = "Придумайте ключ безопастности (число)";
                 progressBar1.Visible = false;
             }
             else
             {
+                label1.Text = "C возвращением!";
+                label3.Text = "Подождите";
+                button1.Visible = false;
+                textBox1.Visible = false;
+                timer1.Start();
+            }
 
+            label1.Location = new Point(Width / 2 - label1.Width/2, 20);
+            label2.Location = new Point(Width / 2 - label2.Width / 2, 70);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            goodLoad = true;
+            Close();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            count++;
+            progressBar1.Value = count * 10;
+            if (count == 10)
+            { 
+                goodLoad = true; 
+                Close(); 
             }
         }
     }
