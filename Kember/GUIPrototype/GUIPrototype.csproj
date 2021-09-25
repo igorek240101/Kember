@@ -7,10 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="bin\Debug\net5.0-windows\Resource\play.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\KemberModel\KemberModel.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="BaseVisualModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
