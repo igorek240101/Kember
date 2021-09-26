@@ -54,6 +54,8 @@ namespace GUIPrototype
                         menuStrip1.Items.Insert(0, new ToolStripMenuItem());
                         menuStrip1.Items[0].Text = loaded.NameOfModule;
                         menuStrip1.Items[0].ForeColor = SystemColors.Control;
+                        splitContainer1.Panel1.Controls.Add(loaded);
+                        loaded.Visible = false;
                     }
                 }
             }
@@ -124,14 +126,15 @@ namespace GUIPrototype
                 currentModule.Visible = false;
                 currentModule = null;
             }
-            if (sender == menuStrip1.Items[^1])
+            if (e.ClickedItem == menuStrip1.Items[^1])
             {
                 currentModule = null;
                 button3.Visible = false;
             }
             else
             {
-                ToolStripMenuItem toolStrip = sender as ToolStripMenuItem;
+                
+                ToolStripItem toolStrip = e.ClickedItem;
                 toolStrip.Enabled = false;
                 currentModule = visualModules[toolStrip.Text];
                 currentModule.Visible = true;

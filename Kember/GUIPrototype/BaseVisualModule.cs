@@ -22,7 +22,7 @@ namespace GUIPrototype
 
         public abstract string SystemNameOfModule { get; }
 
-        public abstract void VisualizeResults(object[] results);
+        public abstract void VisualizeResults(object results);
 
         public abstract void Reader(string s);
 

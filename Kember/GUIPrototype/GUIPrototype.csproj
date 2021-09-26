@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="bin\Debug\net5.0-windows\Resource\play.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net5.0-windows\Resource\play.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\KemberModel\KemberModel.csproj" />
   </ItemGroup>
 
