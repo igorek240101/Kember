@@ -16,7 +16,7 @@ namespace Kember
         static KemberBackModule()
         {
             string path = new Uri(Assembly.GetAssembly(typeof(KemberBackModule)).CodeBase).LocalPath;
-            path = path.Substring(0, path.LastIndexOf("\\")) + @"\Modules";
+            path = path.Substring(0, path.LastIndexOf("\\")) + @"\BackModule";
             string[] dlls = Directory.GetFiles(path, "*.dll");
             for(int i = 0; i < dlls.Length; i++)
             {
