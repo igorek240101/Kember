@@ -71,7 +71,7 @@ namespace GUIPrototype
 
         private void splitContainer1_Panel1_SizeChanged(object sender, EventArgs e)
         {
-            button3.Location = new Point(splitContainer1.Panel1.Width - 65, splitContainer1.Panel1.Height - 65);
+            button3.Location = new Point(splitContainer1.Panel1.Width - 135, splitContainer1.Panel1.Height - 65);
         }
 
         private void button1_Click(object sender, EventArgs e)

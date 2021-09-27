@@ -18,14 +18,11 @@ namespace GUIPrototype
             AutoSize = true;
         }
 
-
         public abstract string NameOfModule { get; }
 
         public abstract string SystemNameOfModule { get; }
 
         public abstract void VisualizeResults(object results);
-
-        public abstract void Reader(string s);
 
         public abstract object DataCollection();
 

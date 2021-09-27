@@ -1,10 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net5.0-windows\Resource\play.jpg" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="bin\Debug\net5.0-windows\Resource\play.png" />
@@ -15,9 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="BaseVisualModule.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
