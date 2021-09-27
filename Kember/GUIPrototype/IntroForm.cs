@@ -18,11 +18,22 @@ namespace GUIPrototype
 
         public static bool goodLoad = false;
 
+        private readonly static string UserName;
+
+        static IntroForm()
+        {
+#if RELEASE
+            UserName = Environment.UserName;
+#elif DEBUG
+            UserName = System.IO.File.ReadAllText("config.txt");
+#endif
+        }
+
         public IntroForm()
         {
-            User user = AppDbContext.db.Users.FirstOrDefault(t => t.Name == "Igor");
+            User user = AppDbContext.db.Users.FirstOrDefault(t => t.Name == UserName);
             InitializeComponent();
-            label2.Text = Environment.UserName;
+            label2.Text = UserName;
             if (user == null)
             {
                 label1.Text = "Добро пожаловать!";
@@ -47,7 +58,7 @@ namespace GUIPrototype
             int key;
             if (int.TryParse(textBox1.Text, out key))
             {
-                KemberBackModule.Registration(Environment.UserName, Convert.ToString(key));
+                KemberBackModule.Registration(UserName, Convert.ToString(key));
                 goodLoad = true;
                 Close();
             }

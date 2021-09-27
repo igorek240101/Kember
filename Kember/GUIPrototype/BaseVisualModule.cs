@@ -24,8 +24,6 @@ namespace GUIPrototype
 
         public abstract void VisualizeResults(object results);
 
-        public abstract void Reader(string s);
-
         public abstract object DataCollection();
 
     }
