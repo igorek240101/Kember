@@ -47,13 +47,20 @@ namespace GUIPrototype
             int key;
             if (int.TryParse(textBox1.Text, out key))
             {
-                KemberBackModule.Registration(Environment.UserName, Convert.ToString(key));
-                goodLoad = true;
-                Close();
+                if (key >= 100000)
+                {
+                    KemberBackModule.Registration(Environment.UserName, Convert.ToString(key));
+                    goodLoad = true;
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("Слишком короткое число", "Ошибка!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Ввдеите число", "Ошибка!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Введите число", "Ошибка!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
