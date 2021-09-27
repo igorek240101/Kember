@@ -10,15 +10,33 @@ namespace Kember
 {
     public static class KemberBackModule
     {
+
+        /// <summary>
+        /// Переменная, содержащая информацию о пользователе, которая есть в системе
+        /// </summary>
 #if DEBUG
         public static User User;
 #else
         private static User User;
 #endif
 
+        /// <summary>
+        /// Список расчитанных, но несохраненных метрик
+        /// </summary>
+#if DEBUG
+        public static List<(string, DateTime, string)> saves = new List<(string, DateTime, string)>();
+#else
         private static List<(string, DateTime, string)> saves = new List<(string, DateTime, string)>();
+#endif
 
+        /// <summary>
+        /// Список содержащий реализации метрик
+        /// </summary>
+#if DEBUG
         public static List<IMetric> metrics = new List<IMetric>();
+#else
+        private static List<IMetric> metrics = new List<IMetric>();
+#endif
 
         static KemberBackModule()
         {
@@ -44,6 +62,13 @@ namespace Kember
             }
         }
 
+        /// <summary>
+        /// Метод инициирубщий расчет метрики
+        /// </summary>
+        /// <param name="assembly">массив сборок для которых будет проводится расчет</param>
+        /// <param name="args">аргументы для расчета метрики</param>
+        /// <param name="metric">системное имя метрики</param>
+        /// <returns></returns>
         public static object[] Invoke(Assembly[] assembly, object args, string metric)
         {
             object[] results = new object[assembly.Length];
@@ -62,6 +87,10 @@ namespace Kember
             return null;
         }
 
+        /// <summary>
+        /// Метод сохраняющий все расчитанные, но ексохраненные метрики
+        /// </summary>
+        /// <param name="key">Ключ пользователя для шифрования файлов сохранений</param>
         public static void Save(string key)
         {
             if (!HashValidate(key)) throw new Exception();
@@ -74,6 +103,13 @@ namespace Kember
             }
         }
 
+        /// <summary>
+        /// Метод загружающий информацию из файлов сохранения в систему
+        /// </summary>
+        /// <param name="key">Ключ пользователя для расшифровки файлов сохранений</param>
+        /// <param name="log">Информация о расчете который необходимо загрузить</param>
+        /// <param name="assemblies">Возвращаемое значение - сборки, резултаты анализа, которых отражены в файле сохранения</param>
+        /// <returns></returns>
         public static object[] Load(string key, Log log, out Assembly[] assemblies)
         {
             if (!HashValidate(key)) throw new Exception();
@@ -87,6 +123,12 @@ namespace Kember
             throw new Exception();
         }
 
+
+        /// <summary>
+        /// Метод валидации секретного ключа пользователя
+        /// </summary>
+        /// <param name="key">Ключ пользователя для шифрования/расшифровки файлов сохранений</param>
+        /// <returns></returns>
 #if DEBUG
         public static bool HashValidate(string key)
 #else
@@ -99,6 +141,13 @@ namespace Kember
             return hash == User.OpenKey;
         }
 
+
+        /// <summary>
+        /// Метод шифрующий данные и записывающий их в файл
+        /// </summary>
+        /// <param name="skey">Ключ пользователя для шифрования файлов сохранений<</param>
+        /// <param name="text">Текст, который подлежит шифрованию</param>
+        /// <param name="path">Путь к файлу в который необходимо записать шифр</param>
 #if DEBUG
         public static void Encrypt(string skey, string text, string path)
 #else
@@ -121,6 +170,13 @@ namespace Kember
             }
         }
 
+
+        /// <summary>
+        /// Метод считвающий шифр из файла и расшифрующий эти данные
+        /// </summary>
+        /// <param name="skey">Ключ пользователя для расшифровки файлов сохранений</param>
+        /// <param name="path">Путь к файлу из которого необходимо извлечь шифр</param>
+        /// <returns></returns>
 #if DEBUG
         public static string Decrypt(string skey, string path)
 #else
@@ -145,7 +201,12 @@ namespace Kember
             StreamReader decryptReader = new(cryptoStream);
             return decryptReader.ReadToEnd();
         }
-
+        
+        /// <summary>
+        /// Метод авторизации пользователя
+        /// </summary>
+        /// <param name="name">Имя пользователя в системе</param>
+        /// <returns></returns>
         public static bool Login(string name)
         {
             User user = AppDbContext.db.Users.FirstOrDefault(t => t.Name == name);
@@ -157,6 +218,12 @@ namespace Kember
             else return false;
         }
 
+
+        /// <summary>
+        /// Метод регистрации пользователя
+        /// </summary>
+        /// <param name="name">Имя пользователя в системе</param>
+        /// <param name="key">Секретный ключ пользователя</param>
         public static void Registration(string name, string key)
         {
             SHA512Managed sha = new SHA512Managed();
