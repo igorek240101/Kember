@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace Kember
 {
@@ -11,8 +6,8 @@ namespace Kember
     {
         public object RunMetric(Assembly assembly, object args);
 
-        public object Read(string input);
+        public object[] Read(string input, out Assembly[] assemblies);
 
-        public string Write(object output);
+        public string Write(object[] output, Assembly[] assemblies);
     }
 }

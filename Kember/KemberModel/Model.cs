@@ -30,6 +30,9 @@ namespace Kember
         public DateTime TimeMark { get; set; }
 
         [Required]
+        public string Metric { get; set; }
+
+        [Required]
         public string PathToFile { get; set; }
     }
 
