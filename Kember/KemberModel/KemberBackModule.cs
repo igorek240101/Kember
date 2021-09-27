@@ -138,7 +138,7 @@ namespace Kember
             if (User == null) throw new Exception();
             SHA512Managed sha = new SHA512Managed();
             string hash = Encoding.UTF8.GetString(sha.ComputeHash(Encoding.UTF8.GetBytes(key)));
-            return hash == User.OpenKey;
+            return hash == User.SecurityKey;
         }
 
 
@@ -228,7 +228,7 @@ namespace Kember
         {
             SHA512Managed sha = new SHA512Managed();
             string hash = Encoding.UTF8.GetString(sha.ComputeHash(Encoding.UTF8.GetBytes(key)));
-            User = new User() { Name = name, OpenKey = hash };
+            User = new User() { Name = name, SecurityKey = hash };
             AppDbContext.db.Users.Add(User);
             AppDbContext.db.SaveChanges();
         }
