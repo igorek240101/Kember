@@ -120,7 +120,7 @@ namespace KemberTeamMetrics
         {
             string name = type.Name.Split('+')[^1];
             int index = name.IndexOf('\'');
-            if (index < 0) name = name.Substring(0, index);
+            if (index >= 0) name = name.Substring(0, index);
             return name;
         }
 
