@@ -25,12 +25,12 @@ namespace KemberTeamMetrics
             return res;
         }
 
-        public object[] Read(string input, out Assembly[] assemblies)
+        public (object, Assembly)[] Read(string input)
         {
             throw new NotImplementedException();
         }
 
-        public string Write(object[] output, Assembly[] assemblies)
+        public string Write((object, Assembly)[] output)
         {
             throw new NotImplementedException();
         }
