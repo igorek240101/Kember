@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KemberBackTest", "KemberBac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KemberMetricTest", "KemberMetricTest\KemberMetricTest.csproj", "{CDBB721B-F9EE-4395-9FC4-6985527314F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp1", "TestApp1\TestApp1.csproj", "{70F62AFB-1B95-431B-8396-B24AC22E9B79}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WMCTest", "TestApp1\WMCTest.csproj", "{70F62AFB-1B95-431B-8396-B24AC22E9B79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
