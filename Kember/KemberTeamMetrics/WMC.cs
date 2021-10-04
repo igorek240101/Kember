@@ -91,9 +91,9 @@ namespace KemberTeamMetrics
 
         private enum Flags
         {
-            StaticClass =       0b00000001,
+            StaticClass =       0b00000001, // NotImplementation
             Delegate =          0b00000010,
-            AnonymousType =     0b00000100,
+            AnonymousType =     0b00000100, // NotImplementation
             Struct =            0b00001000,
             Nested =            0b00010000,
             Enum =              0b00100000,
