@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\KemberTeamMetrics\KemberTeamMetrics.csproj" />
     <ProjectReference Include="..\TestApp1\WMCTest.csproj" />
   </ItemGroup>
 

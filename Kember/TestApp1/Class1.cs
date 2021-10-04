@@ -135,4 +135,33 @@ namespace TestApp1
     {
         S, M = 1, T = 10, F, St = 9
     }
+
+    public class Class20
+    {
+        public class Class21
+        {
+
+        }
+    }
+
+    delegate int Class22(string s);
+
+    public class Class23
+    {
+        public int Property
+        {
+            get { return 0; }
+            set { return; }
+        }
+    }
+
+    public class Class24
+    {
+        public static void Meth() { }
+    }
+
+    public static class Class25
+    {
+        public static void Meth() { }
+    }
 }

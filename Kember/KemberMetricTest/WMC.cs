@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Reflection;
 using TestApp1;
+using KemberTeamMetrics;
 
 namespace KemberMetricTest
 {
@@ -8,6 +9,7 @@ namespace KemberMetricTest
     {
 
         Assembly assembly;
+        KemberTeamMetrics.WMC wmc = new KemberTeamMetrics.WMC();
 
         [SetUp]
         public void Setup()
@@ -19,7 +21,15 @@ namespace KemberMetricTest
         [Test]
         public void Test1()
         {
-            Assert.Pass();
+            (string, MethodInfo[])[] res = (wmc.RunMetric(assembly, null) as (string, MethodInfo[])[]);
+            string s = "";
+            foreach (var value in res)
+            {
+                s += value.Item1 + "\n";
+                foreach (var meth in value.Item2) s += "    " + meth.Name + "\n" ;
+            }
+            throw new System.Exception(s);
+            Assert.AreEqual(19, (wmc.RunMetric(assembly, null) as (string, int)[]).Length);
         }
     }
 }
