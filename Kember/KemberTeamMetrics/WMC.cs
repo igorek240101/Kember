@@ -17,7 +17,7 @@ namespace KemberTeamMetrics
             (string, string, int)[] res = new (string, string, int)[types.Count];
             for(int i = 0; i < res.Length; i++)
             {
-                BindingFlags binding = BindingFlags.DeclaredOnly | BindingFlags.Public;
+                BindingFlags binding = BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance;
                 if ((flags & Flags.PrivateMethods) != 0) binding |= BindingFlags.NonPublic;
                 if ((flags & Flags.StaticMethods) != 0) binding |= BindingFlags.Static;
                 res[i] = (TypeClassification(types[i]), CleanTypeName(types[i]), types[i].GetMethods(binding).Length);
@@ -119,7 +119,7 @@ namespace KemberTeamMetrics
         private string CleanTypeName(Type type)
         {
             string name = type.Name.Split('+')[^1];
-            int index = name.IndexOf('\'');
+            int index = name.IndexOf('`');
             if (index >= 0) name = name.Substring(0, index);
             return name;
         }
