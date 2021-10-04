@@ -12,8 +12,17 @@ namespace KemberTeamMetrics
 
         public object RunMetric(Assembly assembly, object args)
         {
-            List<Type> types = CleanType(assembly, (Flags)(args as int?).Value);
-            return types.ConvertAll(t => (t.FullName, t.GetMethods().Length)).ToArray();
+            Flags flags = (Flags)(args as int?).Value;
+            List<Type> types = CleanType(assembly, flags);
+            (string, string, int)[] res = new (string, string, int)[types.Count];
+            for(int i = 0; i < res.Length; i++)
+            {
+                BindingFlags binding = BindingFlags.DeclaredOnly | BindingFlags.Public;
+                if ((flags & Flags.PrivateMethods) != 0) binding |= BindingFlags.NonPublic;
+                if ((flags & Flags.StaticMethods) != 0) binding |= BindingFlags.Static;
+                res[i] = (TypeClassification(types[i]), CleanTypeName(types[i]), types[i].GetMethods(binding).Length);
+            }
+            return res;
         }
 
         public object[] Read(string input, out Assembly[] assemblies)
@@ -95,6 +104,24 @@ namespace KemberTeamMetrics
                 }
             }
             return types;
+        }
+
+        private string TypeClassification(Type type)
+        {
+            if (type.IsEnum) return "Перечисление";
+            else if (type.IsValueType) return "Структура";
+            else if (type.IsInterface) return "Интерфейс";
+            else if (typeof(Delegate).IsAssignableFrom(type.BaseType)) return "Делегат";
+            else if (type.IsAbstract) return "Абстрактный класс";
+            else return "Класс";
+        }
+
+        private string CleanTypeName(Type type)
+        {
+            string name = type.Name.Split('+')[^1];
+            int index = name.IndexOf('\'');
+            if (index < 0) name = name.Substring(0, index);
+            return name;
         }
 
         private enum Flags
