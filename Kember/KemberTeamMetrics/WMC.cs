@@ -12,7 +12,7 @@ namespace KemberTeamMetrics
 
         public object RunMetric(Assembly assembly, object args)
         {
-            List<Type> types = CleanType(assembly, (Flags)(args as byte?).Value);
+            List<Type> types = CleanType(assembly, (Flags)(args as int?).Value);
             return types.ConvertAll(t => (t.FullName, t.GetMethods().Length)).ToArray();
         }
 
@@ -31,53 +31,61 @@ namespace KemberTeamMetrics
             List<Type> types = assembly.GetTypes().ToList();
             for (int i = 0; i < types.Count; i++)
             {
-                if ((byte)(flags & Flags.StaticClass) == 0 && types[i].IsAbstract && types[i].IsSealed && false) // Требуется уточнение подхода для языков отличных от C$
+                if ((flags & Flags.StaticClass) == 0 && types[i].IsAbstract && types[i].IsSealed && false) // Требуется уточнение подхода для языков отличных от C$
                 {
                     types.RemoveAt(i);
                     i--; continue;
                 }
                 else
                 {
-                    if ((byte)(flags & Flags.Delegate) == 0 && typeof(Delegate).IsAssignableFrom(types[i].BaseType)) // Костыль
+                    if ((flags & Flags.Delegate) == 0 && typeof(Delegate).IsAssignableFrom(types[i].BaseType)) // Костыль
                     {
                         types.RemoveAt(i);
                         i--; continue;
                     }
                     else
                     {
-                        if ((byte)(flags & Flags.AnonymousType) == 0 && false) // В явном виде не может быть реализовано
+                        if ((flags & Flags.AnonymousType) == 0 && false) // В явном виде не может быть реализовано
                         {
                             types.RemoveAt(i);
                             i--; continue;
                         }
                         else
                         {
-                            if ((byte)(flags & Flags.Struct) == 0 && types[i].IsValueType)
+                            if ((flags & Flags.Struct) == 0 && types[i].IsValueType && !types[i].IsEnum)
                             {
                                 types.RemoveAt(i);
                                 i--; continue;
                             }
                             else
                             {
-                                if ((byte)(flags & Flags.Nested) == 0 && types[i].IsNested)
+                                if ((flags & Flags.Nested) == 0 && types[i].IsNested)
                                 {
                                     types.RemoveAt(i);
                                     i--; continue;
                                 }
                                 else
                                 {
-                                    if ((byte)(flags & Flags.Enum) == 0 && types[i].IsEnum)
+                                    if ((flags & Flags.Enum) == 0 && types[i].IsEnum)
                                     {
                                         types.RemoveAt(i);
                                         i--; continue;
                                     }
                                     else
                                     {
-                                        object[] array = types[i].GetCustomAttributes(typeof(CompilerGeneratedAttribute), false);
-                                        if (array != null && array.Length > 0)
+                                        if ((flags & Flags.Interface) == 0 && types[i].IsInterface)
                                         {
                                             types.RemoveAt(i);
                                             i--; continue;
+                                        }
+                                        else
+                                        {
+                                            object[] array = types[i].GetCustomAttributes(typeof(CompilerGeneratedAttribute), false);
+                                            if (array != null && array.Length > 0)
+                                            {
+                                                types.RemoveAt(i);
+                                                i--; continue;
+                                            }
                                         }
                                     }
                                 }
@@ -91,14 +99,15 @@ namespace KemberTeamMetrics
 
         private enum Flags
         {
-            StaticClass =       0b00000001, // NotImplementation
-            Delegate =          0b00000010,
-            AnonymousType =     0b00000100, // NotImplementation
-            Struct =            0b00001000,
-            Nested =            0b00010000,
-            Enum =              0b00100000,
-            PrivateMethods =    0b01000000,
-            StaticMethods =     0b10000000,
+            StaticClass =       0b000000001, // NotImplementation
+            Delegate =          0b000000010,
+            AnonymousType =     0b000000100, // NotImplementation
+            Struct =            0b000001000,
+            Nested =            0b000010000,
+            Enum =              0b000100000,
+            Interface =         0b001000000,
+            PrivateMethods =    0b010000000,
+            StaticMethods =     0b100000000,
         }
     }
 }
