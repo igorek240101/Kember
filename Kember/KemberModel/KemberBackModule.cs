@@ -69,18 +69,18 @@ namespace Kember
         /// <param name="args">аргументы для расчета метрики</param>
         /// <param name="metric">системное имя метрики</param>
         /// <returns></returns>
-        public static object[] Invoke(Assembly[] assembly, object args, string metric)
+        public static (object, Assembly)[] Invoke(Assembly[] assembly, object args, string metric)
         {
-            object[] results = new object[assembly.Length];
+            (object, Assembly)[] results = new (object, Assembly)[assembly.Length];
             for (int i = 0; i < metrics.Count; i++)
             {
                 if (metrics[i].GetType().Name == metric)
                 {
                     for (int j = 0; j < results.Length; j++)
                     {
-                        results[j] = metrics[i].RunMetric(assembly[j], args);
+                        results[j] = (metrics[i].RunMetric(assembly[j], args), assembly[j]);
                     }
-                    saves.Add((metric, DateTime.Now, metrics[i].Write(results, assembly)));
+                    saves.Add((metric, DateTime.Now, metrics[i].Write(results)));
                     return results;
                 }
             }
@@ -110,14 +110,14 @@ namespace Kember
         /// <param name="log">Информация о расчете который необходимо загрузить</param>
         /// <param name="assemblies">Возвращаемое значение - сборки, резултаты анализа, которых отражены в файле сохранения</param>
         /// <returns></returns>
-        public static object[] Load(string key, Log log, out Assembly[] assemblies)
+        public static (object, Assembly)[] Load(string key, Log log)
         {
             if (!HashValidate(key)) throw new Exception();
             foreach(var value in metrics)
             {
                 if(value.GetType().Name == log.Metric)
                 {
-                    return value.Read(Decrypt(key, log.PathToFile), out assemblies);
+                    return value.Read(Decrypt(key, log.PathToFile));
                 }
             }
             throw new Exception();
