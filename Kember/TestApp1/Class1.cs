@@ -169,5 +169,45 @@ namespace TestApp1
     public abstract class Class28
     {
         public abstract void Meth();
+
+        public abstract void Meth(int i);
+
+        public void Meth(string s) { }
+    }
+
+    public class Class29
+    { 
+        int this [int i]
+        {
+            get
+            {
+                return i;
+            }
+            set
+            {
+                return;
+            }
+        }
+    }
+
+    public class Class30
+    {
+        event Class24 class30Event
+        {
+            add
+            {
+
+            }
+            remove
+            {
+
+            }
+        }
+       
+    }
+
+    public class Class31
+    {
+        event Class24 class31Event;
     }
 }

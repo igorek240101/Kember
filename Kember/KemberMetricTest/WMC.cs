@@ -21,8 +21,8 @@ namespace KemberMetricTest
         [Test]
         public void CountOfTypes()
         {
-            (int,int)[] input = { (0b00000000, 20), (0b00000010, 21), (0b00001000, 21), (0b00010000, 21),
-                                  (0b00010010, 24), (0b00100000, 21), (0b01000000, 22), (0b01111010, 28)};
+            (int,int)[] input = { (0b00000000, 23), (0b00000010, 24), (0b00001000, 24), (0b00010000, 24),
+                                  (0b00010010, 27), (0b00100000, 24), (0b01000000, 25), (0b01111010, 31)};
             foreach(var value in input)
             {
                 int res = (wmc.RunMetric(assembly, value.Item1) as (string, string, int)[]).Length;
@@ -271,7 +271,7 @@ namespace KemberMetricTest
             (string, string, int)[] metrics = (wmc.RunMetric(assembly, 0b11111010) as (string, string, int)[]);
             int res = metrics.FirstOrDefault(t => t.Item2 == "Class25").Item3;
             Assert.AreEqual(1, res);
-            metrics = (wmc.RunMetric(assembly, 0b11111010) as (string, string, int)[]);
+            metrics = (wmc.RunMetric(assembly, 0b01111010) as (string, string, int)[]);
             res = metrics.FirstOrDefault(t => t.Item2 == "Class25").Item3;
             Assert.AreEqual(0, res);
         }
@@ -304,7 +304,40 @@ namespace KemberMetricTest
         {
             (string, string, int)[] metrics = (wmc.RunMetric(assembly, 0b11111010) as (string, string, int)[]);
             int res = metrics.FirstOrDefault(t => t.Item2 == "Class28").Item3;
-            Assert.AreEqual(1, res);
+            Assert.AreEqual(3, res);
+        }
+
+        [Test]
+        public void Indexer()
+        {
+            (string, string, int)[] metrics = (wmc.RunMetric(assembly, 0b11111010) as (string, string, int)[]);
+            int res = metrics.FirstOrDefault(t => t.Item2 == "Class29").Item3;
+            Assert.AreEqual(2, res);
+            metrics = (wmc.RunMetric(assembly, 0b01111010) as (string, string, int)[]);
+            res = metrics.FirstOrDefault(t => t.Item2 == "Class29").Item3;
+            Assert.AreEqual(0, res);
+        }
+
+        [Test]
+        public void Eventer()
+        {
+            (string, string, int)[] metrics = (wmc.RunMetric(assembly, 0b11111010) as (string, string, int)[]);
+            int res = metrics.FirstOrDefault(t => t.Item2 == "Class30").Item3;
+            Assert.AreEqual(2, res);
+            metrics = (wmc.RunMetric(assembly, 0b01111010) as (string, string, int)[]);
+            res = metrics.FirstOrDefault(t => t.Item2 == "Class30").Item3;
+            Assert.AreEqual(0, res);
+        }
+
+        [Test]
+        public void EventerWithoutAccessor()
+        {
+            (string, string, int)[] metrics = (wmc.RunMetric(assembly, 0b11111010) as (string, string, int)[]);
+            int res = metrics.FirstOrDefault(t => t.Item2 == "Class31").Item3;
+            Assert.AreEqual(0, res);
+            metrics = (wmc.RunMetric(assembly, 0b01111010) as (string, string, int)[]);
+            res = metrics.FirstOrDefault(t => t.Item2 == "Class31").Item3;
+            Assert.AreEqual(0, res);
         }
     }
 }
