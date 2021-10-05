@@ -84,69 +84,70 @@ namespace TestApp1
     {
         public void Meth()
         {
-            var f = new { a = 10, s = "N" };
+            var aType = new { a = 10, s = "N" };
         }
     }
 
     public class Class12
     {
-        delegate int F();
+        delegate int Class13();
 
-        F GetF = delegate ()
+        Class13 GetF = delegate ()
         {
             return 0;
         };
     }
 
-    public class Class13
+    public class Class14
     {
-        delegate int F(string s);
+        delegate int Class15(string s);
 
-        F GetF = s => s.Length;
+        Class15 GetF = s => s.Length;
     }
 
-    public class Class14
+    public class Class16
     {
         public void Meth() { }
         public void Meth(string s) { }
     }
 
-    public class Class15
+    public class Class17
     {
         public void Meth(string s = "N") { }
     }
 
-    public interface Class16
+    public interface Class18
     {
         public void Meth();
     }
 
-    public interface Class17
+    public interface Class19
     {
         public void Meth() { }
     }
 
-    public struct Class18
+    public struct Class20
     {
         public void Meth() { }
     }
 
-    public enum Class19
+    public enum Class21
     {
         S, M = 1, T = 10, F, St = 9
     }
 
-    public class Class20
+    public class Class22
     {
-        public class Class21
+        public void Method() { }
+        public class Class23
         {
-
+            public void Method() { }
         }
     }
 
-    delegate int Class22(string s);
+    delegate int Class24(string s);
 
-    public class Class23
+    public class Class25
     {
         public int Property
         {
@@ -155,13 +156,18 @@ namespace TestApp1
         }
     }
 
-    public class Class24
+    public class Class26
     {
         public static void Meth() { }
     }
 
-    public static class Class25
+    public static class Class27
     {
         public static void Meth() { }
+    }
+
+    public abstract class Class28
+    {
+        public abstract void Meth();
     }
 }
