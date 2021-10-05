@@ -15,12 +15,20 @@ namespace KemberTeamMetrics
             Flags flags = (Flags)(args as int?).Value;
             List<Type> types = CleanType(assembly, flags);
             (string, string, int)[] res = new (string, string, int)[types.Count];
-            for(int i = 0; i < res.Length; i++)
+            for (int i = 0; i < res.Length; i++)
             {
-                BindingFlags binding = BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance;
-                if ((flags & Flags.PrivateMethods) != 0) binding |= BindingFlags.NonPublic;
-                if ((flags & Flags.StaticMethods) != 0) binding |= BindingFlags.Static;
-                res[i] = (TypeClassification(types[i]), CleanTypeName(types[i]), types[i].GetMethods(binding).Length);
+                if (typeof(Delegate).IsAssignableFrom(types[i].BaseType))
+                {
+                    res[i] = (TypeClassification(types[i]), CleanTypeName(types[i]), 0);
+                }
+                else
+                {
+                    BindingFlags binding = BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance;
+                    if ((flags & Flags.PrivateMethods) != 0) binding |= BindingFlags.NonPublic;
+                    if ((flags & Flags.StaticMethods) != 0) binding |= BindingFlags.Static;
+                    int plas = (flags & Flags.Property) != 0 ? types[i].GetProperties(binding).Length : 0;
+                    res[i] = (TypeClassification(types[i]), CleanTypeName(types[i]), types[i].GetMethods(binding).Length + plas);
+                }
             }
             return res;
         }
@@ -126,15 +134,16 @@ namespace KemberTeamMetrics
 
         private enum Flags
         {
-            StaticClass =       0b000000001, // NotImplementation
-            Delegate =          0b000000010,
-            AnonymousType =     0b000000100, // NotImplementation
-            Struct =            0b000001000,
-            Nested =            0b000010000,
-            Enum =              0b000100000,
-            Interface =         0b001000000,
-            PrivateMethods =    0b010000000,
-            StaticMethods =     0b100000000,
+            StaticClass =    0b0000000001, // NotImplementation
+            Delegate =       0b0000000010,
+            AnonymousType =  0b0000000100, // NotImplementation
+            Struct =         0b0000001000,
+            Nested =         0b0000010000,
+            Enum =           0b0000100000,
+            Interface =      0b0001000000,
+            PrivateMethods = 0b0010000000,
+            StaticMethods =  0b0100000000,
+            Property =       0b1000000000
         }
     }
 }
