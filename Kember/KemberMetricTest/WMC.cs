@@ -39,7 +39,7 @@ namespace KemberMetricTest
                                         ("Делегат","Class13"),      ("Класс","Class14"),     ("Делегат","Class15"),   ("Класс","Class16"),
                                         ("Класс","Class17"),        ("Интерфейс","Class18"), ("Интерфейс","Class19"), ("Структура","Class20"),
                                         ("Перечисление","Class21"), ("Класс","Class22"),     ("Класс","Class23"),     ("Делегат","Class24"),
-                                        ("Класс","Class25"),        ("Класс","Class26"),     ("Класс","Class27"),     ("Абстрактный класс","Class28")};
+                                        ("Класс","Class25"),        ("Класс","Class26"),     ("Класс","Class27"),     ("Класс","Class28")};
             (string, string, int)[] res = (wmc.RunMetric(assembly, 0b01111010) as (string, string, int)[]);
             foreach (var value in input)
             {
@@ -268,12 +268,18 @@ namespace KemberMetricTest
         [Test]
         public void Property()
         {
-            (string, string, int)[] metrics = (wmc.RunMetric(assembly, 0b11111010) as (string, string, int)[]);
+            (string, string, int)[] metrics = (wmc.RunMetric(assembly, 0b00111111010) as (string, string, int)[]);
             int res = metrics.FirstOrDefault(t => t.Item2 == "Class25").Item3;
+            Assert.AreEqual(0, res);
+            metrics = (wmc.RunMetric(assembly, 0b01111111010) as (string, string, int)[]);
+            res = metrics.FirstOrDefault(t => t.Item2 == "Class25").Item3;
             Assert.AreEqual(1, res);
-            metrics = (wmc.RunMetric(assembly, 0b01111010) as (string, string, int)[]);
+            metrics = (wmc.RunMetric(assembly, 0b10111111010) as (string, string, int)[]);
             res = metrics.FirstOrDefault(t => t.Item2 == "Class25").Item3;
             Assert.AreEqual(0, res);
+            metrics = (wmc.RunMetric(assembly, 0b11111111010) as (string, string, int)[]);
+            res = metrics.FirstOrDefault(t => t.Item2 == "Class25").Item3;
+            Assert.AreEqual(2, res);
         }
 
 
