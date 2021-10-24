@@ -4,9 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:KemberFrontend.View"
+             
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
+    <!--xmlns:local="clr-namespace:KemberFrontend.ViewModel"
+    <UserControl.DataContext>
+        <vm:AutorisationViewModel/>
+    </UserControl.DataContext>-->
     <UserControl.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF232D3E" Offset="0"/>
@@ -112,7 +116,7 @@
                     </Style>
                 </Border.Style>
 
-                <Button Name="auBtn" Content="Авторизоваться" FontSize="16" Foreground="White">
+                <Button Name="auBtn" Click="auBtn_Click" Content="Авторизоваться" FontSize="16" Foreground="White" >
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="OverridesDefaultStyle" Value="True"/>
@@ -132,8 +136,9 @@
                                                 <BeginStoryboard>
                                                     <Storyboard>
                                                         <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                                                        Duration="0:0:0.100" To="2,2,0,0"/>
+                                                                        Duration="0:0:0.100" To="2,2,2,2"/>
                                                         <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#FF095386" Duration="0:0:0.0002"/>
+                                                        <ColorAnimation Storyboard.TargetProperty="Foreground.Color" To="#FFACB3BF" Duration="0:0:0.0002"/>
                                                     </Storyboard>
                                                 </BeginStoryboard>
                                             </EventTrigger>
@@ -143,6 +148,7 @@
                                                         <ThicknessAnimation Storyboard.TargetProperty="Margin"
                                                                         Duration="0:0:0.100" To="0"/>
                                                         <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#FF0E86CA" Duration="0:0:0.0002"/>
+                                                        <ColorAnimation Storyboard.TargetProperty="Foreground.Color" To="White" Duration="0:0:0.0002"/>
                                                     </Storyboard>
                                                 </BeginStoryboard>
                                             </EventTrigger>

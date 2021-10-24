@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace KemberFrontend.View
 {
     /// <summary>
@@ -20,9 +21,19 @@ namespace KemberFrontend.View
     /// </summary>
     public partial class AutorisationPage : UserControl
     {
-        public AutorisationPage()
+        private GeneralWindowControl winControl;
+        public AutorisationPage(GeneralWindowControl winControl)
         {
             InitializeComponent();
+            this.winControl = winControl;
         }
+
+        private void auBtn_Click(object sender, RoutedEventArgs e)
+        {
+            winControl.MainFrame.Content = new MainPage();
+            
+            
+        }
+
     }
 }

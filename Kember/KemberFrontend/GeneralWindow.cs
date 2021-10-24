@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.Shell;
+﻿using KemberFrontend.View;
+using Microsoft.VisualStudio.Shell;
 using System;
 using System.Runtime.InteropServices;
 
@@ -29,6 +30,7 @@ namespace KemberFrontend
             // we are not calling Dispose on this object. This is because ToolWindowPane calls Dispose on
             // the object returned by the Content property.
             this.Content = new GeneralWindowControl();
+            //this.Content = new AutorisationPage();
         }
     }
 }
