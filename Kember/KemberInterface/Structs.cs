@@ -7,10 +7,16 @@ using System.Reflection;
 
 namespace KemberInterface
 {
-    public struct InvokeArgs
+    public class InvokeArgs
     {
-        public Assembly[] assembly;
-        public object args;
-        public string metric;
+        public Assembly[] Assembly { get; set; }
+        public object Args { get; set; }
+        public string Metric { get; set; }
+    }
+
+    public class Registration
+    {
+        public string Name { get; set; }
+        public string Key { get; set; }
     }
 }

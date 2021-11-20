@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.Json;
+using System.Net;
+using System.IO;
 
 
 namespace KemberFrontend.View
@@ -28,11 +31,29 @@ namespace KemberFrontend.View
             this.winControl = winControl;
         }
 
+
         private void auBtn_Click(object sender, RoutedEventArgs e)
         {
-            winControl.MainFrame.Content = new MainPage();
-            
-            
+            WebRequest req = WebRequest.CreateHttp("https://localhost:5001/KemberBackModule/Registration/");
+            req.ContentType = "application/json";
+            req.Method = "POST";
+            using (var streamWriter = new StreamWriter(req.GetRequestStream()))
+            {
+                streamWriter.Write(JsonSerializer.Serialize(new { Name = GeneralWindowControl.UserName, Key = tbKey.Text}));
+            }
+            try
+            {
+                WebResponse resp = req.GetResponse();
+                using (var streamWriter = new StreamReader(resp.GetResponseStream()))
+                {
+                    string s = streamWriter.ReadToEnd();
+                    if (s != "")
+                    {
+                        winControl.MainFrame.Content = new MainPage();
+                    }
+                }
+            }
+            catch (Exception ex) { Console.WriteLine(ex.GetType().Name + " " + ex.Message); }
         }
 
     }
