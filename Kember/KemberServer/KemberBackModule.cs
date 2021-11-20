@@ -12,19 +12,10 @@ namespace Kember
     {
 
         /// <summary>
-        /// Переменная, содержащая информацию о пользователе, которая есть в системе
-        /// </summary>
-#if DEBUG
-        public static User User;
-#else
-        private static User User;
-#endif
-
-        /// <summary>
         /// Список расчитанных, но несохраненных метрик
         /// </summary>
 #if DEBUG
-        public static List<(string, DateTime, string)> saves = new List<(string, DateTime, string)>();
+        public static Dictionary<User,List<(string, DateTime, string)>> saves = new Dictionary<User, List<(string, DateTime, string)>>();
 #else
         private static List<(string, DateTime, string)> saves = new List<(string, DateTime, string)>();
 #endif
@@ -73,7 +64,7 @@ namespace Kember
         /// <param name="args">аргументы для расчета метрики</param>
         /// <param name="metric">системное имя метрики</param>
         /// <returns></returns>
-        public static (object, Assembly)[] Invoke(Assembly[] assembly, object args, string metric)
+        public static (object, Assembly)[] Invoke(Assembly[] assembly, object args, string metric, User user)
         {
             (object, Assembly)[] results = new (object, Assembly)[assembly.Length];
             for (int i = 0; i < metrics.Count; i++)
@@ -84,7 +75,7 @@ namespace Kember
                     {
                         results[j] = (metrics[i].RunMetric(assembly[j], args), assembly[j]);
                     }
-                    saves.Add((metric, DateTime.Now, metrics[i].Write(results)));
+                    saves[user].Add((metric, DateTime.Now, metrics[i].Write(results)));
                     return results;
                 }
             }
@@ -95,15 +86,15 @@ namespace Kember
         /// Метод сохраняющий все расчитанные, но ексохраненные метрики
         /// </summary>
         /// <param name="key">Ключ пользователя для шифрования файлов сохранений</param>
-        public static void Save(string key)
+        public static void Save(string key, User user)
         {
-            if (!HashValidate(key)) throw new Exception();
-            string name = User.Name;
+            if (!HashValidate(key, user)) throw new Exception();
+            string name = user.Name;
             while (saves.Count > 0)
             {
-                string path = "Data\\" + User.Name + saves[0].Item1 + saves[0].Item2 + ".kbr";
-                AppDbContext.db.Logs.Add(new Log() { Owner = User, Metric = saves[0].Item1, TimeMark = saves[0].Item2, PathToFile = path });
-                Encrypt(key, saves[0].Item3, path);
+                string path = "Data\\" + user.Name + saves[user][0].Item1 + saves[user][0].Item2 + ".kbr";
+                AppDbContext.db.Logs.Add(new Log() { Owner = user, Metric = saves[user][0].Item1, TimeMark = saves[user][0].Item2, PathToFile = path });
+                Encrypt(key, saves[user][0].Item3, path);
             }
         }
 
@@ -114,9 +105,9 @@ namespace Kember
         /// <param name="log">Информация о расчете который необходимо загрузить</param>
         /// <param name="assemblies">Возвращаемое значение - сборки, резултаты анализа, которых отражены в файле сохранения</param>
         /// <returns></returns>
-        public static (object, Assembly)[] Load(string key, Log log)
+        public static (object, Assembly)[] Load(string key, Log log, User user)
         {
-            if (!HashValidate(key)) throw new Exception();
+            if (!HashValidate(key, user)) throw new Exception();
             foreach (var value in metrics)
             {
                 if (value.GetType().Name == log.Metric)
@@ -134,15 +125,15 @@ namespace Kember
         /// <param name="key">Ключ пользователя для шифрования/расшифровки файлов сохранений</param>
         /// <returns></returns>
 #if DEBUG
-        public static bool HashValidate(string key)
+        public static bool HashValidate(string key, User user)
 #else
         private static bool HashValidate(string key)
 #endif
         {
-            if (User == null) throw new Exception();
+            if (user == null) throw new Exception();
             SHA512Managed sha = new SHA512Managed();
             string hash = Encoding.UTF8.GetString(sha.ComputeHash(Encoding.UTF8.GetBytes(key)));
-            return hash == User.SecurityKey;
+            return hash == user.SecurityKey;
         }
 
 
@@ -212,15 +203,14 @@ namespace Kember
         /// </summary>
         /// <param name="name">Имя пользователя в системе</param>
         /// <returns></returns>
-        public static bool Login(string name)
+        public static User Login(string name)
         {
             User user = AppDbContext.db.Users.FirstOrDefault(t => t.Name == name);
-            if (user != null)
+            if(saves.Keys.Count != 0 && !saves.Keys.Contains(user))
             {
-                User = user;
-                return true;
+                saves.Add(user, new List<(string, DateTime, string)>());
             }
-            else return false;
+            return user;
         }
 
         /// <summary>
@@ -228,13 +218,15 @@ namespace Kember
         /// </summary>
         /// <param name="name">Имя пользователя в системе</param>
         /// <param name="key">Секретный ключ пользователя</param>
-        public static void Registration(string name, string key)
+        public static User Registration(string name, string key)
         {
             SHA512Managed sha = new SHA512Managed();
             string hash = Encoding.UTF8.GetString(sha.ComputeHash(Encoding.UTF8.GetBytes(key)));
-            User = new User() { Name = name, SecurityKey = hash };
-            AppDbContext.db.Users.Add(User);
+            User user = new User() { Name = name, SecurityKey = hash };
+            AppDbContext.db.Users.Add(user);
             AppDbContext.db.SaveChanges();
+            saves.Add(user, new List<(string, DateTime, string)>());
+            return user;
         }
     }
 }
