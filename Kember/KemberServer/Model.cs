@@ -46,7 +46,7 @@ namespace Kember
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                .UseSqlite("Filename=LogDB.db");
+                .UseSqlite("Filename=D:\\Kember\\LogDB.db");
         }
     }
 
