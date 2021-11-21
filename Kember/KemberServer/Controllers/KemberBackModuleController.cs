@@ -27,7 +27,7 @@ namespace Kember
             }
             catch (Exception e)
             {
-                return UnprocessableEntity();
+                return UnprocessableEntity(e.GetType().Name + "\r\n" + e.Message);
             }
         }
 
@@ -44,7 +44,7 @@ namespace Kember
             }
             catch (Exception e)
             {
-                return UnprocessableEntity(e.GetType().Name);
+                return UnprocessableEntity(e.GetType().Name + "\r\n" + e.Message);
             }
         }
 
