@@ -62,9 +62,7 @@
     <Compile Include="View\AutorisationPage.xaml.cs">
       <DependentUpon>AutorisationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\IMetric.xaml.cs">
-      <DependentUpon>IMetric.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="View\IMetric.cs" />
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -106,10 +104,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AutorisationPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\IMetric.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

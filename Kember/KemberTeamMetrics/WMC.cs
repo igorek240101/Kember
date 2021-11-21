@@ -173,8 +173,8 @@ namespace KemberTeamMetrics
             Interface =          0b00001000000,
             PrivateMethods =     0b00010000000,
             StaticMethods =      0b00100000000,
-            Property =           0b01000000000,
-            RegisterAccsessors = 0b10000000000
+            Property =           0b01000000000, // NotImplementation
+            RegisterAccsessors = 0b10000000000 // NotImplementation
         }
     }
 }
