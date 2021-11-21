@@ -26,8 +26,39 @@ namespace KemberTeamMetrics
                     BindingFlags binding = BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance;
                     if ((flags & Flags.PrivateMethods) != 0) binding |= BindingFlags.NonPublic;
                     if ((flags & Flags.StaticMethods) != 0) binding |= BindingFlags.Static;
-                    int plas = (flags & Flags.Property) != 0 ? types[i].GetProperties(binding).Length : 0;
-                    res[i] = (TypeClassification(types[i]), CleanTypeName(types[i]), types[i].GetMethods(binding).Length + plas);
+                    int plas = 0;
+                    if ((flags & Flags.Property) != 0)
+                    {
+                        PropertyInfo[] properties = types[i].GetProperties(binding);
+                        if ((flags & Flags.RegisterAccsessors) == 0)
+                        {
+                            HashSet<string> hash = new HashSet<string>();
+                            foreach(var value in properties)
+                            {
+                                hash.Add(value.Name.Substring(value.Name.IndexOf('_')));
+                            }
+                            plas = hash.Count;
+                        }
+                        else
+                        {
+                            plas = properties.Length;
+                        }
+                    }
+                    MethodInfo[] methods = types[i].GetMethods(binding);
+                    if ((flags & Flags.StaticMethods) == 0)
+                    {
+                        List<MethodInfo> methodInfos = methods.ToList();
+                        for(int j = 0; j < methodInfos.Count; j++)
+                        {
+                            if(methodInfos[j].IsStatic)
+                            {
+                                methodInfos.RemoveAt(j);
+                                j--;
+                            }
+                        }
+                        methods = methodInfos.ToArray();
+                    }
+                    res[i] = (TypeClassification(types[i]), CleanTypeName(types[i]), methods.Length + plas);    
                 }
             }
             return res;
@@ -120,7 +151,6 @@ namespace KemberTeamMetrics
             else if (type.IsValueType) return "Структура";
             else if (type.IsInterface) return "Интерфейс";
             else if (typeof(Delegate).IsAssignableFrom(type.BaseType)) return "Делегат";
-            else if (type.IsAbstract) return "Абстрактный класс";
             else return "Класс";
         }
 
@@ -134,16 +164,17 @@ namespace KemberTeamMetrics
 
         private enum Flags
         {
-            StaticClass =    0b0000000001, // NotImplementation
-            Delegate =       0b0000000010,
-            AnonymousType =  0b0000000100, // NotImplementation
-            Struct =         0b0000001000,
-            Nested =         0b0000010000,
-            Enum =           0b0000100000,
-            Interface =      0b0001000000,
-            PrivateMethods = 0b0010000000,
-            StaticMethods =  0b0100000000,
-            Property =       0b1000000000
+            StaticClass =        0b00000000001, // NotImplementation
+            Delegate =           0b00000000010,
+            AnonymousType =      0b00000000100, // NotImplementation
+            Struct =             0b00000001000,
+            Nested =             0b00000010000,
+            Enum =               0b00000100000,
+            Interface =          0b00001000000,
+            PrivateMethods =     0b00010000000,
+            StaticMethods =      0b00100000000,
+            Property =           0b01000000000,
+            RegisterAccsessors = 0b10000000000
         }
     }
 }
