@@ -15,19 +15,10 @@ using System.Windows.Shapes;
 
 namespace KemberFrontend.View
 {
-    /// <summary>
-    /// Логика взаимодействия для IMetric.xaml
-    /// </summary>
-    public abstract partial class IMetric : UserControl
+    public interface IMetric
     {
-        public IMetric()
-        {
-            InitializeComponent();
-            play.Click += new RoutedEventHandler(Invoke);
-        }
+        object Invoke();
 
-
-
-        public abstract void Invoke(object sender, RoutedEventArgs e);
+        void SetResult(object arg);
     }
 }

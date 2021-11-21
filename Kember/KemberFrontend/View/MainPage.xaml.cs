@@ -62,8 +62,8 @@ namespace KemberFrontend.View
                 Button button = new Button();
                 button.Content = value.Key;
                 stackPanel.Children.Add(button);
-                mainPanel.Children.Add(value.Value);
-                value.Value.Visibility = Visibility.Hidden;
+                //mainPanel.Children.Add(value.Value);
+                //value.Value.Visibility = Visibility.Hidden;
             }
         }
     }

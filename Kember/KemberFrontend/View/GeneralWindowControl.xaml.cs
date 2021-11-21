@@ -24,7 +24,7 @@ namespace KemberFrontend.View
 
         public const string PATH = "D:\\Kember";
 
-        public string uri;
+        public static string uri;
 
         Process server;
 
