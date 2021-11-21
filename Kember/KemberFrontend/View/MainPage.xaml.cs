@@ -25,6 +25,8 @@ namespace KemberFrontend.View
 
         static Dictionary<string, IMetric> metrics = new Dictionary<string, IMetric>();
 
+        IMetric now;
+
 
         static MainPage()
         {
@@ -35,15 +37,15 @@ namespace KemberFrontend.View
                 for (int i = 0; i < dlls.Length; i++)
                 {
                     Type[] types = null;
-                    Assembly assembly = Assembly.LoadFile(dlls[i]);
+                    Assembly assembly = Assembly.LoadFrom(dlls[i]);
                     try
                     {
                         types = assembly.GetTypes();
                     }
-                    catch { types = new Type[0]; }
+                    catch (ReflectionTypeLoadException e) { types = e.Types.Where(t => t != null).ToArray(); }
                     for (int j = 0; j < types.Length; j++)
                     {
-                        if (!types[j].IsAbstract && !types[j].IsEnum && types[j].IsClass && types[j].IsSubclassOf(typeof(IMetric)))
+                        if (!types[j].IsAbstract && !types[j].IsEnum && types[j].IsClass && types[j].IsSubclassOf(typeof(UserControl)) && types[j].GetInterface(typeof(IMetric).Name) != null)
                         {
                             metrics.Add(types[j].Name, types[j].GetConstructor(new Type[0]).Invoke(new object[0]) as IMetric);
                         }
@@ -61,9 +63,29 @@ namespace KemberFrontend.View
             {
                 Button button = new Button();
                 button.Content = value.Key;
+                button.Click += new RoutedEventHandler(MetricCheck);
                 stackPanel.Children.Add(button);
-                //mainPanel.Children.Add(value.Value);
-                //value.Value.Visibility = Visibility.Hidden;
+                mainPanel.Children.Add(value.Value as UserControl);
+                (value.Value as UserControl).Visibility = Visibility.Hidden;
+            }
+        }
+
+        public void MetricCheck(object sender, RoutedEventArgs e)
+        {
+            if(now != null)
+            {
+                (now as UserControl).Visibility = Visibility.Hidden;
+            }
+            now = metrics[(sender as Button).Content.ToString()];
+            (now as UserControl).Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (now != null)
+            {
+                (now as UserControl).Visibility = Visibility.Hidden;
+                now = null;
             }
         }
     }

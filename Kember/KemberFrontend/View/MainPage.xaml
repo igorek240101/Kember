@@ -119,7 +119,7 @@
             </Grid.Style>
                 <Border BorderThickness="1" BorderBrush="#FF303031" Background="Black" Opacity="0.6"/>
                 <StackPanel x:Name="stackPanel" Orientation="Vertical">
-                        <Button Template="{StaticResource ResourceKey=SlideMenuBtn}"
+                        <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Click="Button_Click"
                         Content="Metric 1">
                         </Button>
                     </StackPanel>

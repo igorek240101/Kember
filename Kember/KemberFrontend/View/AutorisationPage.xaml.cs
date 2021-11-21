@@ -34,7 +34,7 @@ namespace KemberFrontend.View
 
         private void auBtn_Click(object sender, RoutedEventArgs e)
         {
-            WebRequest req = WebRequest.CreateHttp(winControl.uri + "/KemberBackModule/Registration/");
+            WebRequest req = WebRequest.CreateHttp(GeneralWindowControl.uri + "/KemberBackModule/Registration/");
             req.ContentType = "application/json";
             req.Method = "POST";
             using (var streamWriter = new StreamWriter(req.GetRequestStream()))
