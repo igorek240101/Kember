@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Text;
 
 namespace KemberFrontend.View
 {
@@ -43,6 +44,7 @@ namespace KemberFrontend.View
                     process.StartInfo.RedirectStandardOutput = true;
                     process.StartInfo.RedirectStandardInput = true;
                     process.StartInfo.UseShellExecute = false;
+                    process.StartInfo.StandardOutputEncoding = Encoding.GetEncoding("CP866");
                     process.Start();
                     backOutput = process.StandardOutput;
                     backInput = process.StandardInput;

@@ -13,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using KemberFrontend.View;
-using System.Reflection;
 
 namespace KemberTeamVisualMetrics
 {
     /// <summary>
-    /// Логика взаимодействия для UserControl1.xaml
+    /// Логика взаимодействия для BIH.xaml
     /// </summary>
-    public partial class WMC : IMetric
+    public partial class BIH : IMetric
     {
         List<Label> labels = new List<Label>();
-        public WMC()
+        public BIH()
         {
             InitializeComponent();
         }
@@ -37,13 +36,12 @@ namespace KemberTeamVisualMetrics
             if (checkNested.IsChecked == true) flags = flags | Flags.Nested;
             if (checkStatic.IsChecked == true) flags = flags | Flags.StaticMethods;
             if (checkStruct.IsChecked == true) flags = flags | Flags.Struct;
-            if (checkPrivate.IsChecked == true) flags = flags | Flags.PrivateMethods;
             return ((int)flags).ToString();
         }
 
         public void SetResult(string arg)
         {
-            while(labels.Count > 0)
+            while (labels.Count > 0)
             {
                 grid.Children.Remove(labels[0]);
                 labels.RemoveAt(0);
@@ -62,17 +60,16 @@ namespace KemberTeamVisualMetrics
 
         private enum Flags
         {
-            StaticClass = 0b00000000001, // NotImplementation
-            Delegate = 0b00000000010,
-            AnonymousType = 0b00000000100, // NotImplementation
-            Struct = 0b00000001000,
-            Nested = 0b00000010000,
-            Enum = 0b00000100000,
-            Interface = 0b00001000000,
-            PrivateMethods = 0b00010000000,
-            StaticMethods = 0b00100000000,
-            Property = 0b01000000000, // NotImplementation
-            RegisterAccsessors = 0b10000000000 // NotImplementation
+            StaticClass =           0b00000000001, // NotImplementation
+            Delegate =              0b00000000010,
+            AnonymousType =         0b00000000100, // NotImplementation
+            Struct =                0b00000001000,
+            Nested =                0b00000010000,
+            Enum =                  0b00000100000,
+            Interface =             0b00001000000,
+            StaticMethods =         0b00010000000,
+            Property =              0b00100000000, // NotImplementation
+            RegisterAccsessors =    0b01000000000 // NotImplementation
         }
     }
 }

@@ -13,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using KemberFrontend.View;
-using System.Reflection;
 
 namespace KemberTeamVisualMetrics
 {
     /// <summary>
-    /// Логика взаимодействия для UserControl1.xaml
+    /// Логика взаимодействия для WMC2.xaml
     /// </summary>
-    public partial class WMC : IMetric
+    public partial class WMC2 : IMetric
     {
         List<Label> labels = new List<Label>();
-        public WMC()
+        public WMC2()
         {
             InitializeComponent();
         }
@@ -43,7 +42,7 @@ namespace KemberTeamVisualMetrics
 
         public void SetResult(string arg)
         {
-            while(labels.Count > 0)
+            while (labels.Count > 0)
             {
                 grid.Children.Remove(labels[0]);
                 labels.RemoveAt(0);

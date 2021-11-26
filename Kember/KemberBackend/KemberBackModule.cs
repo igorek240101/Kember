@@ -30,7 +30,7 @@ namespace Kember
         /// Список содержащий реализации метрик
         /// </summary>
 #if DEBUG
-        public static List<IMetric> metrics = new List<IMetric>();
+        public static List<Metric> metrics = new List<Metric>();
 #else
         private static List<IMetric> metrics = new List<IMetric>();
 #endif
@@ -53,9 +53,9 @@ namespace Kember
                     catch { types = new Type[0]; }
                     for (int j = 0; j < types.Length; j++)
                     {
-                        if (!types[j].IsAbstract && !types[j].IsEnum && types[j].IsClass && types[j].GetInterface(typeof(IMetric).Name) != null)
+                        if (!types[j].IsAbstract && !types[j].IsEnum && types[j].IsClass && types[j].IsSubclassOf(typeof(Metric)))
                         {
-                            metrics.Add(types[j].GetConstructor(new Type[0]).Invoke(new object[0]) as IMetric);
+                            metrics.Add(types[j].GetConstructor(new Type[0]).Invoke(new object[0]) as Metric);
                         }
                     }
                 }
@@ -70,17 +70,14 @@ namespace Kember
         /// <param name="args">аргументы для расчета метрики</param>
         /// <param name="metric">системное имя метрики</param>
         /// <returns></returns>
-        public static (object, string)[] Invoke(Assembly[] assembly, object args, string metric)
+        public static Metric.metric[] Invoke(Assembly[] assembly, object args, string metric)
         {
-            (object, string)[] results = new (object, string)[assembly.Length];
+            Metric.metric[] results = new Metric.metric[assembly.Length];
             for (int i = 0; i < metrics.Count; i++)
             {
                 if (metrics[i].GetType().Name == metric)
                 {
-                    for (int j = 0; j < results.Length; j++)
-                    {
-                        results[j] = (metrics[i].RunMetric(assembly[j], args), assembly[j].GetName().Name);
-                    }
+                    results = metrics[i].RunMetric(assembly, args);
                     saves.Add((metric, DateTime.Now, metrics[i].Write(results)));
                     return results;
                 }
@@ -111,7 +108,7 @@ namespace Kember
         /// <param name="log">Информация о расчете который необходимо загрузить</param>
         /// <param name="assemblies">Возвращаемое значение - сборки, резултаты анализа, которых отражены в файле сохранения</param>
         /// <returns></returns>
-        public static (object, string)[] Load(string key, Log log)
+        public static Metric.metric[] Load(string key, Log log)
         {
             if (!HashValidate(key)) throw new Exception();
             foreach (var value in metrics)

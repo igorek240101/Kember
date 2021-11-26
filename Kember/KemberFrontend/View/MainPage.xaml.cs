@@ -120,7 +120,8 @@ namespace KemberFrontend.View
                 GeneralWindowControl.backInput.WriteLine(assemblies);
                 GeneralWindowControl.backInput.WriteLine(now.Invoke());
                 GeneralWindowControl.backInput.WriteLine(now.GetType().Name);
-                now.SetResult(GeneralWindowControl.backOutput.ReadLine());
+                string s = GeneralWindowControl.backOutput.ReadLine();
+                now.SetResult(s);
             }
             catch (Exception ex) { Console.WriteLine(ex.GetType().Name + " " + ex.Message); }
         }

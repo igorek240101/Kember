@@ -48,6 +48,37 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ANAM.xaml.cs">
+      <DependentUpon>ANAM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BIH.xaml.cs">
+      <DependentUpon>BIH.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DIT.xaml.cs">
+      <DependentUpon>DIT.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NOC.xaml.cs">
+      <DependentUpon>NOC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WMC2.xaml.cs">
+      <DependentUpon>WMC2.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ANAM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BIH.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DIT.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NOC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WMC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -56,6 +87,10 @@
       <DependentUpon>WMC.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="WMC2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

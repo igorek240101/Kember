@@ -38,17 +38,17 @@ namespace Kember
                     case "Invoke":
                         {
                             Assembly[] assemblies = Console.ReadLine().Split((char)(0)).ToList().ConvertAll(t => Assembly.LoadFrom(t)).ToArray();
-                            (object, string)[] res = KemberBackModule.Invoke(assemblies, Console.ReadLine(), Console.ReadLine());
+                            Metric.metric[] res = KemberBackModule.Invoke(assemblies, Console.ReadLine(), Console.ReadLine());
                             string s = "";
                             for(int i = 0; i < res.Length; i++)
                             {
                                 if (i + 1 == res.Length)
                                 {
-                                    s += res[i].Item2 + (char)(0) + res[i].Item1;
+                                    s += res[i].assembly + (char)(0) + res[i].obj;
                                 }
                                 else
                                 {
-                                    s += res[i].Item2 + (char)(0) + res[i].Item1 + (char)(0);
+                                    s += res[i].assembly + (char)(0) + res[i].obj + (char)(0);
                                 }
                             }
                             Console.WriteLine(s);
