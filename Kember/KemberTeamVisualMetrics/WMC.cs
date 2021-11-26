@@ -22,31 +22,31 @@ namespace KemberTeamVisualMetrics
     /// </summary>
     public partial class WMC : IMetric
     {
-
+        Label label = new Label();
         public WMC()
         {
             InitializeComponent();
+            label.Foreground = checkDelegate.Foreground;
+            label.Margin = new Thickness(500, 30, 0, 0);
+            grid.Children.Add(label);
         }
 
-        public object Invoke()
+        public string Invoke()
         {
             Flags flags = 0;
-            if (checkDelegate.IsChecked == null) flags = flags | Flags.Delegate;
-            if (checkEnum.IsChecked == null) flags = flags | Flags.Enum;
-            if (checkInterface.IsChecked == null) flags = flags | Flags.Interface;
-            if (checkNested.IsChecked == null) flags = flags | Flags.Nested;
-            if (checkStatic.IsChecked == null) flags = flags | Flags.StaticMethods;
-            if (checkStruct.IsChecked == null) flags = flags | Flags.Struct;
-            if (checkPrivate.IsChecked == null) flags = flags | Flags.PrivateMethods;
-            return flags;
+            if (checkDelegate.IsChecked == true) flags = flags | Flags.Delegate;
+            if (checkEnum.IsChecked == true) flags = flags | Flags.Enum;
+            if (checkInterface.IsChecked == true) flags = flags | Flags.Interface;
+            if (checkNested.IsChecked == true) flags = flags | Flags.Nested;
+            if (checkStatic.IsChecked == true) flags = flags | Flags.StaticMethods;
+            if (checkStruct.IsChecked == true) flags = flags | Flags.Struct;
+            if (checkPrivate.IsChecked == true) flags = flags | Flags.PrivateMethods;
+            return ((int)flags).ToString();
         }
 
-        public void SetResult(object arg)
+        public void SetResult(string arg)
         {
-            Label label = new Label();
-            label.Foreground = checkDelegate.Foreground;
-            label.Content = "Result";
-            label.Margin = new Thickness(500, 30, 0, 0);
+            label.Content = arg;
         }
 
         private enum Flags

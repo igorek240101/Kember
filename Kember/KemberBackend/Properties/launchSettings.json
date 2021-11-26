@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "KemberBackend": {
+      "commandName": "Executable",
+      "executablePath": "D:\\Kember\\KemberBackend.exe",
+      "workingDirectory": "D:\\Kember",
+      "remoteDebugEnabled": false
+    }
+  }
+}

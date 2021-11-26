@@ -6,8 +6,8 @@ namespace Kember
     {
         public object RunMetric(Assembly assembly, object args);
 
-        public (object, Assembly)[] Read(string input);
+        public (object, string)[] Read(string input);
 
-        public string Write((object, Assembly)[] output);
+        public string Write((object, string)[] output);
     }
 }

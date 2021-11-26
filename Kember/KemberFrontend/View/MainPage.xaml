@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1000">
 
-    
-    
+
+
     <UserControl.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF232D3E" Offset="0"/>
@@ -34,7 +34,7 @@
                                                      Value="True">
                                             <Setter Property="Foreground" Value="White"/>
                                         </DataTrigger>
-                                        
+
                                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource
                                             Mode=FindAncestor,
                                             AncestorType={x:Type Button}},
@@ -71,12 +71,12 @@
                                             Path = IsFocused}" Value="True">
                                     <Setter Property="Opacity" Value="0.1"/>
                                 </DataTrigger>
-                                
+
                             </Style.Triggers>
                         </Style>
                     </Border.Style>
                 </Border>
-                
+
                 <Border Name="IsSelectedBorder2" Background="Transparent">
                     <Border.Style>
                         <Style TargetType="Border">
@@ -94,61 +94,59 @@
                         </Style>
                     </Border.Style>
                 </Border>
-            
+
             </Grid>
         </ControlTemplate>
     </UserControl.Resources>
 
-    <StackPanel x:Name="mainPanel" Orientation="Horizontal">
+    <StackPanel x:Name="mainPanel" Orientation="Horizontal" HorizontalAlignment="Stretch">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="220"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-        <Grid Name="SlideMenu" Grid.Column="0" HorizontalAlignment="Left">
-            <Grid.Style>
-                <Style TargetType="Grid">
-                    <Setter Property="Width" Value="225"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Path=IsChecked, ElementName=OpenCloseSlideMenuBtn}"
+            <Grid Name="SlideMenu" Grid.Column="0" HorizontalAlignment="Left">
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Width" Value="225"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=IsChecked, ElementName=OpenCloseSlideMenuBtn}"
                                                      Value="True">
-                            <Setter Property="Width" Value="60"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Grid.Style>
+                                <Setter Property="Width" Value="60"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
                 <Border BorderThickness="1" BorderBrush="#FF303031" Background="Black" Opacity="0.6"/>
                 <StackPanel x:Name="stackPanel" Orientation="Vertical">
-                        <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Click="Button_Click"
-                        Content="Metric 1">
-                        </Button>
-                    </StackPanel>
-                    <ToggleButton Focusable="False" x:Name="OpenCloseSlideMenuBtn" Height="20" Width="20"
-                          VerticalAlignment="Bottom" HorizontalAlignment="Left"
-                          Margin="20,0,0,20" Foreground="White">
-                <!--<ToggleButton.Template>
-                    <ControlTemplate>
-                        <Image>
-                            <Image.Style>
-                                <Style TargetType="Image">
-                                    <Setter Property="Source" Value="res/Close.png"/>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource
-                                            Mode=FindAncestor,
-                                            AncestorType={x:Type ToggleButton}},
-                                            Path = IsChecked}" Value="True">
-                                            <Setter Property="Source" Value="res/Open.png"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Image.Style>
-                        </Image>
-                    </ControlTemplate>
-                </ToggleButton.Template> -->
-            </ToggleButton>
+                    <Button Template="{StaticResource ResourceKey=SlideMenuBtn}"
+                            Content="Metric 1">
+                    </Button>
+                </StackPanel>
+                <ToggleButton Focusable="False" x:Name="OpenCloseSlideMenuBtn" Height="20" Width="20"
+                                VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                                Margin="20,0,0,20" Foreground="White">
+                    <!--<ToggleButton.Template>
+                                        <ControlTemplate>
+                                            <Image>
+                                                <Image.Style>
+                                                    <Style TargetType="Image">
+                                                        <Setter Property="Source" Value="res/Close.png"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource
+                                                                    Mode=FindAncestor,
+                                                                    AncestorType={x:Type ToggleButton}},
+                                                                    Path = IsChecked}" Value="True">
+                                                                    <Setter Property="Source" Value="res/Open.png"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                </Image.Style>
+                                            </Image>
+                                        </ControlTemplate>
+                                    </ToggleButton.Template> -->
+                </ToggleButton>
+            </Grid>
         </Grid>
-        
-    </Grid>
     </StackPanel>
-
 </UserControl>

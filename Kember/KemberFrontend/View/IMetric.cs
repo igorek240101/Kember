@@ -17,8 +17,8 @@ namespace KemberFrontend.View
 {
     public interface IMetric
     {
-        object Invoke();
+        string Invoke();
 
-        void SetResult(object arg);
+        void SetResult(string arg);
     }
 }

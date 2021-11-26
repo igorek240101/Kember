@@ -12,9 +12,14 @@ namespace KemberTeamMetrics
 
         public object RunMetric(Assembly assembly, object args)
         {
-            Flags flags = (Flags)(args as int?).Value;
+            Flags flags;
+            try
+            {
+                flags = (Flags)(int.Parse(args as string));
+            }
+            catch (InvalidOperationException e) { throw new Exception("А вот нет", e); }
             List<Type> types = CleanType(assembly, flags);
-            (string, string, int)[] res = new (string, string, int)[types.Count];
+            wmc res = new wmc(types.Count);
             for (int i = 0; i < res.Length; i++)
             {
                 if (typeof(Delegate).IsAssignableFrom(types[i].BaseType))
@@ -64,14 +69,42 @@ namespace KemberTeamMetrics
             return res;
         }
 
-        public (object, Assembly)[] Read(string input)
+        public (object, string)[] Read(string input)
         {
-            throw new NotImplementedException();
+            string[] main = input.Split('\r');
+            (object, string)[] res = new (object, string)[main.Length];
+            for (int i = 0; i < main.Length; i++)
+            {
+                string[] assembly = main[i].Split('\n');
+                res[i].Item2 = assembly[0];
+                wmc wmcs = new wmc(assembly.Length-1);
+                for (int j = 1; j < main.Length; j++)
+                {
+                    string[] wmc = main[j].Split(' ');
+                    wmcs[j - 1] = (wmc[0], wmc[1], int.Parse(wmc[2]));
+                }
+            }
+            return res;
         }
 
-        public string Write((object, Assembly)[] output)
+        public string Write((object, string)[] output)
         {
-            throw new NotImplementedException();
+            string res = "";
+            for (int i = 0; i < output.Length; i++)
+            {
+                res += output[i].Item2 + '\n';
+                wmc input = (wmc)output[i].Item1;
+                for(int j = 0; j < input.Length; j++)
+                {
+                    res += input[j].Item1 + " " + input[j].Item2 + " " + input[j].Item3;
+                    if (i + 1 != input.Length)
+                    {
+                        res += '\n';
+                        if (j + 1 == input.Length) res += '\r';
+                    }
+                }
+            }
+            return res;
         }
 
         private List<Type> CleanType(Assembly assembly, Flags flags)
@@ -175,6 +208,48 @@ namespace KemberTeamMetrics
             StaticMethods =      0b00100000000,
             Property =           0b01000000000, // NotImplementation
             RegisterAccsessors = 0b10000000000 // NotImplementation
+        }
+
+        private struct wmc
+        {
+
+            (string, string, int)[] array;
+
+            public wmc(int len)
+            {
+                array = new (string, string, int)[len];
+            }
+
+            public int Length { get => array.Length; }
+
+            public (string, string, int) this [int index]
+            {
+                get
+                {
+                    return array[index];
+                }
+                set
+                {
+                    array[index] = value;
+                }
+            }
+
+            public override string ToString()
+            {
+                string s = "";
+                for(int i = 0; i < array.Length; i++)
+                {
+                    if (i + 1 == array.Length)
+                    {
+                        s += $"{array[i].Item1} {array[i].Item2} - {array[i].Item3}";
+                    }
+                    else
+                    {
+                        s += $"{array[i].Item1} {array[i].Item2} - {array[i].Item3}" + ((char)0);
+                    }
+                }
+                return s;
+            }
         }
     }
 }

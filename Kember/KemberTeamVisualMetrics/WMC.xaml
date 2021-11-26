@@ -15,7 +15,7 @@
         </LinearGradientBrush>
     </UserControl.Background>
 
-    <Grid>
+    <Grid Name="grid">
         <CheckBox x:Name="checkDelegate" Content="Учитывать делегаты как типы данных" HorizontalAlignment="Left" Margin="42,30,0,0" VerticalAlignment="Top" Foreground="White"/>
         <CheckBox x:Name="checkStruct" Content="Учитывать структуры" HorizontalAlignment="Left" Margin="42,60,0,0" VerticalAlignment="Top" Foreground="White" IsChecked="True"/>
         <CheckBox x:Name="checkNested" Content="Учитывать вложенные типы" HorizontalAlignment="Left" Margin="42,90,0,0" VerticalAlignment="Top" Foreground="White"/>
@@ -23,6 +23,5 @@
         <CheckBox x:Name="checkInterface" Content="Учитывать интерфейсы" HorizontalAlignment="Left" Margin="42,150,0,0" VerticalAlignment="Top" Foreground="White" IsChecked="True"/>
         <CheckBox x:Name="checkPrivate" Content="Учитывать приватные методы" HorizontalAlignment="Left" Margin="42,180,0,0" VerticalAlignment="Top" Foreground="White" IsChecked="True"/>
         <CheckBox x:Name="checkStatic" Content="Учитывать статические методы" HorizontalAlignment="Left" Margin="42,210,0,0" VerticalAlignment="Top" Foreground="White" IsChecked="True"/>
-
     </Grid>
 </UserControl>
