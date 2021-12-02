@@ -58,6 +58,7 @@ namespace KemberFrontend.View
         /// <param name="winControl"></param>
         public MainPage()
         {
+            page = this;
 
             InitializeComponent();
 
