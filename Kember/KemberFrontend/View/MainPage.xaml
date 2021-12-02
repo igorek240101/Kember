@@ -99,13 +99,21 @@
         </ControlTemplate>
     </UserControl.Resources>
 
-    <StackPanel x:Name="mainPanel" Orientation="Horizontal" HorizontalAlignment="Stretch">
+   
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="220"/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="220"/>
             </Grid.ColumnDefinitions>
-            <Grid Name="SlideMenu" Grid.Column="0" HorizontalAlignment="Left">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+        <Grid  >
+            
+        </Grid>
+        <Grid Name="SlideMenu" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left">
                 <Grid.Style>
                     <Style TargetType="Grid">
                         <Setter Property="Width" Value="225"/>
@@ -148,5 +156,5 @@
                 </ToggleButton>
             </Grid>
         </Grid>
-    </StackPanel>
+    
 </UserControl>

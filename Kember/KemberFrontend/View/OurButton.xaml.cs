@@ -18,11 +18,18 @@ namespace KemberFrontend.View
     /// <summary>
     /// Логика взаимодействия для UserControl1.xaml
     /// </summary>
+    
     public partial class OurButton : UserControl
     {
+        public event RoutedEventHandler Click;
         public OurButton()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Click?.Invoke(this, e);
         }
     }
 }
