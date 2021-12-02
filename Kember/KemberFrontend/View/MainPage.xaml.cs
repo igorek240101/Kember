@@ -15,7 +15,6 @@ namespace KemberFrontend.View
     /// </summary>
     public partial class MainPage : UserControl
     {
-
         static Dictionary<string, IMetric> metrics = new Dictionary<string, IMetric>();
 
         IMetric now;
@@ -23,6 +22,8 @@ namespace KemberFrontend.View
         ListBox listBox;
 
         Button play;
+
+        public static MainPage page;
 
         static MainPage()
         {
@@ -51,8 +52,13 @@ namespace KemberFrontend.View
             catch { }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="winControl"></param>
         public MainPage()
         {
+
             InitializeComponent();
 
             foreach (var value in metrics)
@@ -93,6 +99,24 @@ namespace KemberFrontend.View
             remove.Margin = new Thickness(25, 400, 25, 0);
             remove.Click += new RoutedEventHandler(Remove_Click);
             mainPanel.Children.Add(remove);
+            Button save = new Button();
+            image = new Image();
+            image.Source = new BitmapImage(new Uri("D:\\Kember\\Resourse\\save.png"));
+            save.Content = image;
+            save.Height = 50;
+            save.Width = 50;
+            save.Margin = new Thickness(25,500, 25, 0);
+            save.Click += new RoutedEventHandler(Save_Click);
+            mainPanel.Children.Add(save);
+            Button load = new Button();
+            image = new Image();
+            image.Source = new BitmapImage(new Uri("D:\\Kember\\Resourse\\load.png"));
+            load.Content = image;
+            load.Height = 50;
+            load.Width = 50;
+            load.Margin = new Thickness(25, 600, 25, 0);
+            load.Click += new RoutedEventHandler(Load_Click);
+            mainPanel.Children.Add(load);
         }
 
         public void MetricCheck(object sender, RoutedEventArgs e)
@@ -133,6 +157,16 @@ namespace KemberFrontend.View
             fileDialog.Multiselect = true;
             fileDialog.FileOk += new System.ComponentModel.CancelEventHandler(FileOk);
             fileDialog.ShowDialog();
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            GeneralWindowControl.winControl.MainFrame.Content = new SavePage();
+        }
+
+        private void Load_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void Remove_Click(object sender, RoutedEventArgs e)

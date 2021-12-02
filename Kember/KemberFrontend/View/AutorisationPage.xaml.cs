@@ -10,11 +10,9 @@ namespace KemberFrontend.View
     /// </summary>
     public partial class AutorisationPage : UserControl
     {
-        private GeneralWindowControl winControl;
-        public AutorisationPage(GeneralWindowControl winControl)
+        public AutorisationPage()
         {
             InitializeComponent();
-            this.winControl = winControl;
         }
 
 
@@ -27,7 +25,7 @@ namespace KemberFrontend.View
                 GeneralWindowControl.backInput.WriteLine(tbKey.Text);
                 if (GeneralWindowControl.backOutput.ReadLine() == "True")
                 {
-                    winControl.MainFrame.Content = new MainPage();
+                    GeneralWindowControl.winControl.MainFrame.Content = new MainPage();
                 }
             }
             catch (Exception ex) { Console.WriteLine(ex.GetType().Name + " " + ex.Message); }

@@ -25,11 +25,15 @@ namespace KemberFrontend.View
 
         public static StreamReader backOutput;
 
+        public static GeneralWindowControl winControl;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GeneralWindowControl"/> class.
         /// </summary>
         public GeneralWindowControl()
         {
+            winControl = this;
+
             InitializeComponent();
 
             string[] file = Directory.GetFiles(PATH, "KemberBackend.exe");
@@ -60,7 +64,7 @@ namespace KemberFrontend.View
             backInput.WriteLine(UserName);
             if (backOutput.ReadLine() == "False")
             {
-                MainFrame.Content = new AutorisationPage(this);
+                MainFrame.Content = new AutorisationPage();
             }
             else
             {
