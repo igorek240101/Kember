@@ -92,7 +92,7 @@
     <Grid>
         <Grid>
             <Button Template="{StaticResource ResourceKey=SlideMenuBtn}"
-                        Content="">
+                        Content="" Click="Button_Click">
             </Button>
         </Grid>
 

@@ -63,7 +63,7 @@ namespace KemberFrontend.View
 
             foreach (var value in metrics)
             {
-                Button button = new Button();
+                OurButton button = new OurButton();
                 button.Content = value.Key;
                 button.Click += new RoutedEventHandler(MetricCheck);
                 stackPanel.Children.Add(button);
