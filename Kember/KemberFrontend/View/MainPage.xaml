@@ -110,8 +110,10 @@
                 <RowDefinition Height="80"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-        <Grid  >
-            
+        <Grid>
+            <StackPanel x:Name="mainPanel" Orientation="Horizontal" Margin="0,0,-775,0">
+                
+            </StackPanel>
         </Grid>
         <Grid Name="SlideMenu" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left">
                 <Grid.Style>

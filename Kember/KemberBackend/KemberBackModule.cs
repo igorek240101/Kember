@@ -95,10 +95,18 @@ namespace Kember
             string name = user.Name;
             while (saves.Count > 0)
             {
-                string path = "Data\\" + user.Name + saves[0].Item1 + saves[0].Item2 + ".kbr";
+                string path = "D:\\Kember\\Data\\" + user.Name + saves[0].Item1 + saves[0].Item2.ToString("dd-MM-yyyy-HH-mm-ss") + ".kbr";
                 AppDbContext.db.Logs.Add(new Log() { Owner = user, Metric = saves[0].Item1, TimeMark = saves[0].Item2, PathToFile = path });
                 Encrypt(key, saves[0].Item3, path);
+                AppDbContext.db.SaveChanges();
+                saves.RemoveAt(0);
             }
+        }
+
+        public static Log[] Loading(string key)
+        {
+            if (!HashValidate(key)) throw new Exception();
+            return AppDbContext.db.Logs.Where(t => t.Owner == user).ToArray();
         }
 
         /// <summary>
@@ -136,7 +144,7 @@ namespace Kember
             if (user == null) throw new Exception();
             SHA512Managed sha = new SHA512Managed();
             string hash = Encoding.UTF8.GetString(sha.ComputeHash(Encoding.UTF8.GetBytes(key)));
-            return hash == user.SecurityKey;
+            return hash.StartsWith(user.SecurityKey);
         }
 
 
@@ -152,20 +160,24 @@ namespace Kember
         private static void Encrypt(string skey, string text, string path)
 #endif
         {
-            Aes aes = Aes.Create();
-            byte[] key = Encoding.UTF8.GetBytes(skey);
-            aes.Key = key;
-            byte[] iv = aes.IV;
-            FileStream file = new FileStream(path, FileMode.Create);
-            file.Write(iv, 0, iv.Length);
-
-            using (CryptoStream cryptoStream = new(file, aes.CreateEncryptor(), CryptoStreamMode.Write))
+            try
             {
-                using (StreamWriter encryptWriter = new(cryptoStream))
+                Aes aes = Aes.Create();
+                byte[] key = Encoding.UTF8.GetBytes(skey + skey + skey + skey);
+                aes.Key = key;
+                byte[] iv = aes.IV;
+                FileStream file = new FileStream(path, FileMode.Create);
+                file.Write(iv, 0, iv.Length);
+
+                using (CryptoStream cryptoStream = new(file, aes.CreateEncryptor(), CryptoStreamMode.Write))
                 {
-                    encryptWriter.WriteLine(text);
+                    using (StreamWriter encryptWriter = new(cryptoStream))
+                    {
+                        encryptWriter.WriteLine(text);
+                    }
                 }
             }
+            catch (Exception e) { throw; }
         }
 
 
@@ -219,6 +231,7 @@ namespace Kember
         /// <param name="key">Секретный ключ пользователя</param>
         public static void Registration(string name, string key)
         {
+            if (key.Length != 4 || key.Any(t => !Char.IsDigit(t))) throw new Exception();
             SHA512Managed sha = new SHA512Managed();
             string hash = Encoding.UTF8.GetString(sha.ComputeHash(Encoding.UTF8.GetBytes(key)));
             User user = new User() { Name = name, SecurityKey = hash };

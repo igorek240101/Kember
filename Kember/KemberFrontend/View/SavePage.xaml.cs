@@ -20,24 +20,31 @@ namespace KemberFrontend.View
     /// </summary>
     public partial class SavePage : UserControl
     {
-        public SavePage()
+
+        IAutorization autorization;
+        public SavePage(IAutorization sender)
         {
             InitializeComponent();
         }
 
         private void auBtn_Click(object sender, RoutedEventArgs e)
         {
+            /*
             GeneralWindowControl.backInput.WriteLine("Save");
             GeneralWindowControl.backInput.WriteLine(tbKey.Text);
             if(GeneralWindowControl.backOutput.ReadLine() == "True")
             {
+                MainPage.key = tbKey.Text;
                 GeneralWindowControl.winControl.MainFrame.Content = MainPage.page;
             }
+            */
+            GeneralWindowControl.winControl.MainFrame.Content = autorization;
+            autorization.AutorizationResult(tbKey.Text);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            GeneralWindowControl.winControl.MainFrame.Content = MainPage.page;
+            GeneralWindowControl.winControl.MainFrame.Content = autorization;
         }
     }
 }

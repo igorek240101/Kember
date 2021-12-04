@@ -20,19 +20,41 @@ namespace Kember
                         }
                     case "Registration":
                         {
-                            KemberBackModule.Registration(Console.ReadLine(), Console.ReadLine());
-                            Console.WriteLine("True");
+                            try
+                            {
+                                KemberBackModule.Registration(Console.ReadLine(), Console.ReadLine());
+                                Console.WriteLine("True");
+                            }
+                            catch { Console.WriteLine("False"); }
                             break;
                         }
                     case "Load":
                         {
-                            Console.WriteLine(KemberBackModule.Load(Console.ReadLine(), new Log()));
+                            string input = Console.ReadLine();
+                            Metric.metric[] res = KemberBackModule.Load(Console.ReadLine(), AppDbContext.db.Logs.FirstOrDefault(t => t.Id == int.Parse(input)));
+                            string s = "";
+                            for (int i = 0; i < res.Length; i++)
+                            {
+                                if (i + 1 == res.Length)
+                                {
+                                    s += res[i].assembly + (char)(0) + res[i].obj;
+                                }
+                                else
+                                {
+                                    s += res[i].assembly + (char)(0) + res[i].obj + (char)(0);
+                                }
+                            }
+                            Console.WriteLine(s);
                             break;
                         }
                     case "Save":
                         {
-                            KemberBackModule.Save(Console.ReadLine());
-                            Console.WriteLine("True");
+                            try
+                            {
+                                KemberBackModule.Save(Console.ReadLine());
+                                Console.WriteLine("True");
+                            }
+                            catch { Console.WriteLine("False"); }
                             break;
                         }
                     case "Invoke":
@@ -49,6 +71,24 @@ namespace Kember
                                 else
                                 {
                                     s += res[i].assembly + (char)(0) + res[i].obj + (char)(0);
+                                }
+                            }
+                            Console.WriteLine(s);
+                            break;
+                        }
+                    case "Loading":
+                        {
+                            Log[] logs = KemberBackModule.Loading(Console.ReadLine());
+                            string s = "";
+                            for(int i = 0; i < logs.Length; i++)
+                            {
+                                if (i + 1 == logs.Length)
+                                {
+                                    s += $"{logs[i].Id}\0{logs[i].Metric}-{logs[i].TimeMark}";
+                                }
+                                else
+                                {
+                                    s += $"{logs[i].Id}\0{logs[i].Metric}-{logs[i].TimeMark}{(char)2}";
                                 }
                             }
                             Console.WriteLine(s);

@@ -13,7 +13,7 @@ namespace KemberFrontend.View
     /// <summary>
     /// Логика взаимодействия для MainPage.xaml
     /// </summary>
-    public partial class MainPage : UserControl
+    public partial class MainPage : UserControl, IAutorization
     {
         static Dictionary<string, IMetric> metrics = new Dictionary<string, IMetric>();
 
@@ -24,6 +24,8 @@ namespace KemberFrontend.View
         Button play;
 
         public static MainPage page;
+
+        public static string key;
 
         static MainPage()
         {
@@ -64,7 +66,7 @@ namespace KemberFrontend.View
 
             foreach (var value in metrics)
             {
-                OurButton button = new OurButton();
+                Button button = new Button();
                 button.Content = value.Key;
                 button.Click += new RoutedEventHandler(MetricCheck);
                 stackPanel.Children.Add(button);
@@ -75,7 +77,7 @@ namespace KemberFrontend.View
             play.Content = image;
             play.Height = 50;
             play.Width = 50;
-            play.Margin = new Thickness(25, 300, 25, 0);
+            play.Margin = new Thickness(0, 0, 0, 0);
             play.Click += new RoutedEventHandler(Button_Click);
             play.Visibility = Visibility.Hidden;
             mainPanel.Children.Add(play);
@@ -88,7 +90,7 @@ namespace KemberFrontend.View
             add.Content = image;
             add.Height = 50;
             add.Width = 50;
-            add.Margin = new Thickness(25, 300, 25, 0);
+            add.Margin = new Thickness(0, 0, 0, 0);
             add.Click += new RoutedEventHandler(Add_Click);
             mainPanel.Children.Add(add);
             Button remove = new Button();
@@ -97,7 +99,7 @@ namespace KemberFrontend.View
             remove.Content = image;
             remove.Height = 50;
             remove.Width = 50;
-            remove.Margin = new Thickness(25, 400, 25, 0);
+            remove.Margin = new Thickness(0, 0, 0, 0);
             remove.Click += new RoutedEventHandler(Remove_Click);
             mainPanel.Children.Add(remove);
             Button save = new Button();
@@ -106,7 +108,7 @@ namespace KemberFrontend.View
             save.Content = image;
             save.Height = 50;
             save.Width = 50;
-            save.Margin = new Thickness(25,500, 25, 0);
+            save.Margin = new Thickness(0,0, 0, 0);
             save.Click += new RoutedEventHandler(Save_Click);
             mainPanel.Children.Add(save);
             Button load = new Button();
@@ -115,7 +117,7 @@ namespace KemberFrontend.View
             load.Content = image;
             load.Height = 50;
             load.Width = 50;
-            load.Margin = new Thickness(25, 600, 25, 0);
+            load.Margin = new Thickness(0, 0, 0, 0);
             load.Click += new RoutedEventHandler(Load_Click);
             mainPanel.Children.Add(load);
         }
@@ -137,11 +139,11 @@ namespace KemberFrontend.View
             {
                 GeneralWindowControl.backInput.WriteLine("Invoke");
                 string assemblies = "";
-                for(int i = 0; i < listBox.Items.Count-1; i++)
+                for(int i = 0; i < listBox.Items.Count; i++)
                 {
-                    assemblies += listBox.Items[i].ToString() + ((char)0);
+                    if(i + 1 == listBox.Items.Count) assemblies += listBox.Items[listBox.Items.Count - 1];
+                    else assemblies += listBox.Items[i].ToString() + ((char)0);
                 }
-                assemblies += listBox.Items[listBox.Items.Count - 1];
                 GeneralWindowControl.backInput.WriteLine(assemblies);
                 GeneralWindowControl.backInput.WriteLine(now.Invoke());
                 GeneralWindowControl.backInput.WriteLine(now.GetType().Name);
@@ -162,7 +164,19 @@ namespace KemberFrontend.View
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            GeneralWindowControl.winControl.MainFrame.Content = new SavePage();
+            if (key == null)
+            {
+                GeneralWindowControl.winControl.MainFrame.Content = new SavePage(this);
+            }
+            else
+            {
+                GeneralWindowControl.backInput.WriteLine("Save");
+                GeneralWindowControl.backInput.WriteLine(key);
+                if (GeneralWindowControl.backOutput.ReadLine() == "True")
+                {
+                    MessageBox.Show("Сохранение прошло успешно");
+                }
+            }
         }
 
         private void Load_Click(object sender, RoutedEventArgs e)
@@ -184,6 +198,28 @@ namespace KemberFrontend.View
             {
                 listBox.Items.Add(value);
             }
+        }
+
+        public void AutorizationResult(string s)
+        {
+            key = s;
+            GeneralWindowControl.backInput.WriteLine("Save");
+            GeneralWindowControl.backInput.WriteLine(key);
+            if (GeneralWindowControl.backOutput.ReadLine() == "True")
+            {
+                MessageBox.Show("Сохранение прошло успешно");
+            }
+        }
+
+        public void Loading(string metric, string value)
+        {
+            if (now != null)
+            {
+                mainPanel.Children.RemoveAt(1);
+            }
+            now = metrics[metric];
+            mainPanel.Children.Insert(1, now as UserControl);
+            now.SetResult(value);
         }
     }
 }
