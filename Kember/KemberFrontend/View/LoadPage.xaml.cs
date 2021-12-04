@@ -24,6 +24,10 @@ namespace KemberFrontend.View
         public LoadPage()
         {
             InitializeComponent();
+        }
+
+        public void Invoke()
+        {
             if (MainPage.key == null)
             {
                 GeneralWindowControl.winControl.MainFrame.Content = new SavePage(this);
@@ -33,12 +37,12 @@ namespace KemberFrontend.View
                 GeneralWindowControl.backInput.WriteLine("Loading");
                 GeneralWindowControl.backInput.WriteLine(MainPage.key);
                 string[] s = GeneralWindowControl.backOutput.ReadLine().Split((char)2);
-                foreach(var value in s)
+                foreach (var value in s)
                 {
                     string[] subs = value.Split('\0');
                     dictionary.Add(subs[1], int.Parse(subs[0]));
                     listbox.Items.Add(subs[1]);
-                }    
+                }
             }
         }
 
@@ -58,11 +62,15 @@ namespace KemberFrontend.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            GeneralWindowControl.backInput.WriteLine("Load");
-            GeneralWindowControl.backInput.WriteLine(MainPage.key);
-            GeneralWindowControl.backInput.WriteLine(dictionary[listbox.SelectedItem as string]);
-            string s = GeneralWindowControl.backOutput.ReadLine();
-            GeneralWindowControl.winControl.MainFrame.Content = MainPage.page;
+            if (listbox.SelectedItem != null)
+            {
+                GeneralWindowControl.backInput.WriteLine("Load");
+                GeneralWindowControl.backInput.WriteLine(MainPage.key);
+                GeneralWindowControl.backInput.WriteLine(dictionary[listbox.SelectedItem as string]);
+                string s = GeneralWindowControl.backOutput.ReadLine();
+                GeneralWindowControl.winControl.MainFrame.Content = MainPage.page;
+                MainPage.page.Loading((listbox.SelectedItem as string).Split('-')[0],s);
+            }
         }
     }
 }

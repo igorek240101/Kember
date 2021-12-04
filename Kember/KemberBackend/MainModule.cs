@@ -30,8 +30,9 @@ namespace Kember
                         }
                     case "Load":
                         {
+                            string key = Console.ReadLine();
                             string input = Console.ReadLine();
-                            Metric.metric[] res = KemberBackModule.Load(Console.ReadLine(), AppDbContext.db.Logs.FirstOrDefault(t => t.Id == int.Parse(input)));
+                            Metric.metric[] res = KemberBackModule.Load(key, AppDbContext.db.Logs.FirstOrDefault(t => t.Id == int.Parse(input)));
                             string s = "";
                             for (int i = 0; i < res.Length; i++)
                             {

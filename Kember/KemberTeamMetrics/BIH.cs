@@ -71,9 +71,9 @@ namespace KemberTeamMetrics
                 string[] assembly = main[i].Split('\n');
                 res[i].assembly = assembly[0];
                 bih bihs = new bih(assembly.Length - 1);
-                for (int j = 1; j < main.Length; j++)
+                for (int j = 1; j < assembly.Length; j++)
                 {
-                    string[] bih = main[j].Split(' ');
+                    string[] bih = assembly[j].Split(' ');
                     bihs[j - 1] = (bih[0], bih[1], double.Parse(bih[2]));
                 }
                 res[i].obj = bihs;
@@ -91,10 +91,13 @@ namespace KemberTeamMetrics
                 for (int j = 0; j < input.Length; j++)
                 {
                     res += input[j].Item1 + " " + input[j].Item2 + " " + input[j].Item3;
-                    if (i + 1 != input.Length)
+                    if (j + 1 != input.Length)
                     {
                         res += '\n';
-                        if (j + 1 == input.Length) res += '\r';
+                    }
+                    else
+                    {
+                        if (i + 1 != output.Length) res += '\r';
                     }
                 }
             }

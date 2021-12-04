@@ -41,9 +41,9 @@ namespace KemberTeamMetrics
                 string[] assembly = main[i].Split('\n');
                 res[i].assembly = assembly[0];
                 dit dits = new dit(assembly.Length - 1);
-                for (int j = 1; j < main.Length; j++)
+                for (int j = 1; j < assembly.Length; j++)
                 {
-                    string[] dit = main[j].Split(' ');
+                    string[] dit = assembly[j].Split(' ');
                     dits[j - 1] = (dit[0], int.Parse(dit[1]));
                 }
                 res[i].obj = dits;
@@ -61,10 +61,13 @@ namespace KemberTeamMetrics
                 for (int j = 0; j < input.Length; j++)
                 {
                     res += input[j].Item1 + " " + input[j].Item2;
-                    if (i + 1 != input.Length)
+                    if (j + 1 != input.Length)
                     {
                         res += '\n';
-                        if (j + 1 == input.Length) res += '\r';
+                    }
+                    else
+                    {
+                        if (i + 1 != output.Length) res += '\r';
                     }
                 }
             }

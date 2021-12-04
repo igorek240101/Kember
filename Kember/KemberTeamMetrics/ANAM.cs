@@ -66,9 +66,9 @@ namespace KemberTeamMetrics
                 string[] assembly = main[i].Split('\n');
                 res[i].assembly = assembly[0];
                 anam anams = new anam(assembly.Length - 1);
-                for (int j = 1; j < main.Length; j++)
+                for (int j = 1; j < assembly.Length; j++)
                 {
-                    string[] anam = main[j].Split(' ');
+                    string[] anam = assembly[j].Split(' ');
                     anams[j - 1] = (anam[0], anam[1], double.Parse(anam[2]));
                 }
                 res[i].obj = anams;
@@ -86,10 +86,13 @@ namespace KemberTeamMetrics
                 for (int j = 0; j < input.Length; j++)
                 {
                     res += input[j].Item1 + " " + input[j].Item2 + " " + input[j].Item3;
-                    if (i + 1 != input.Length)
+                    if (j + 1 != input.Length)
                     {
                         res += '\n';
-                        if (j + 1 == input.Length) res += '\r';
+                    }
+                    else
+                    {
+                        if (i + 1 != output.Length) res += '\r';
                     }
                 }
             }

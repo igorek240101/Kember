@@ -25,6 +25,7 @@ namespace KemberFrontend.View
         public SavePage(IAutorization sender)
         {
             InitializeComponent();
+            autorization = sender;
         }
 
         private void auBtn_Click(object sender, RoutedEventArgs e)

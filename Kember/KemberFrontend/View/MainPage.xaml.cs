@@ -152,29 +152,32 @@ namespace KemberFrontend.View
         {
             if (now != null)
             {
-                //mainPanel.Children.RemoveAt(1);
+                WorkSpace.Children.Remove(now as UserControl);
             }
             now = metrics[(sender as Button).Content.ToString()];
-            //mainPanel.Children.Insert(1, now as UserControl);
-            //play.Visibility = Visibility.Visible;
+            WorkSpace.Children.Add(now as UserControl);
+            PlayBtn.IsEnabled = true;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                GeneralWindowControl.backInput.WriteLine("Invoke");
-                string assemblies = "";
-                for(int i = 0; i < ListOfFiles.Items.Count-1; i++)
+                if (ListOfFiles.Items.Count > 0)
                 {
-                    assemblies += ListOfFiles.Items[i].ToString() + ((char)0);
+                    GeneralWindowControl.backInput.WriteLine("Invoke");
+                    string assemblies = "";
+                    for (int i = 0; i < ListOfFiles.Items.Count - 1; i++)
+                    {
+                        assemblies += ListOfFiles.Items[i].ToString() + ((char)0);
+                    }
+                    assemblies += ListOfFiles.Items[ListOfFiles.Items.Count - 1];
+                    GeneralWindowControl.backInput.WriteLine(assemblies);
+                    GeneralWindowControl.backInput.WriteLine(now.Invoke());
+                    GeneralWindowControl.backInput.WriteLine(now.GetType().Name);
+                    string s = GeneralWindowControl.backOutput.ReadLine();
+                    now.SetResult(s);
                 }
-                assemblies += ListOfFiles.Items[ListOfFiles.Items.Count - 1];
-                GeneralWindowControl.backInput.WriteLine(assemblies);
-                GeneralWindowControl.backInput.WriteLine(now.Invoke());
-                GeneralWindowControl.backInput.WriteLine(now.GetType().Name);
-                string s = GeneralWindowControl.backOutput.ReadLine();
-                now.SetResult(s);
             }
             catch (Exception ex) { Console.WriteLine(ex.GetType().Name + " " + ex.Message); }
         }
@@ -207,7 +210,9 @@ namespace KemberFrontend.View
 
         private void Load_Click(object sender, RoutedEventArgs e)
         {
-
+            LoadPage loadPage = new LoadPage();
+            GeneralWindowControl.winControl.MainFrame.Content = loadPage;
+            loadPage.Invoke();
         }
 
         private void Remove_Click(object sender, RoutedEventArgs e)
@@ -241,10 +246,10 @@ namespace KemberFrontend.View
         {
             if (now != null)
             {
-                mainPanel.Children.RemoveAt(1);
+                WorkSpace.Children.Remove(now as UserControl);
             }
             now = metrics[metric];
-            mainPanel.Children.Insert(1, now as UserControl);
+            WorkSpace.Children.Add(now as UserControl);
             now.SetResult(value);
         }
     }

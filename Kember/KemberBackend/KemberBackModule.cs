@@ -123,7 +123,7 @@ namespace Kember
             {
                 if (value.GetType().Name == log.Metric)
                 {
-                    return value.Read(Decrypt(key, log.PathToFile));
+                    return value.Read(Decrypt(key, log.PathToFile).Trim('\r', '\n'));
                 }
             }
             throw new Exception();
@@ -206,7 +206,7 @@ namespace Kember
                 numBytesRead += n;
                 numBytesToRead -= n;
             }
-            byte[] key = Encoding.UTF8.GetBytes(skey);
+            byte[] key = Encoding.UTF8.GetBytes(skey + skey + skey + skey);
             CryptoStream cryptoStream = new(fileStream, aes.CreateDecryptor(key, iv), CryptoStreamMode.Read);
             StreamReader decryptReader = new(cryptoStream);
             return decryptReader.ReadToEnd();
