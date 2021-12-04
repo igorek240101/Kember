@@ -89,13 +89,12 @@
         </ControlTemplate>
     </UserControl.Resources>
 
-    <Grid>
-        <Grid>
+    
+      
             <Button Template="{StaticResource ResourceKey=SlideMenuBtn}"
-                        Content="" Click="Button_Click">
-            </Button>
-        </Grid>
+                        Content="sdfgsdfg" Click="Button_Click"/>
 
-   </Grid>
+
+
 
 </UserControl>
