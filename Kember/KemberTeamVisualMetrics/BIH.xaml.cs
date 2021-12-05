@@ -22,6 +22,10 @@ namespace KemberTeamVisualMetrics
     public partial class BIH : IMetric
     {
         List<Label> labels = new List<Label>();
+
+        const int min = 0, max = 1;
+
+
         public BIH()
         {
             InitializeComponent();
@@ -41,21 +45,50 @@ namespace KemberTeamVisualMetrics
 
         public void SetResult(string arg)
         {
-            while (labels.Count > 0)
-            {
-                grid.Children.Remove(labels[0]);
-                labels.RemoveAt(0);
-            }
-            string[] strs = arg.Split('\0');
+            treeView.Items.Clear();
+            string[] strs = arg.Split((char)1);
+            TreeViewItem metric = new TreeViewItem();
+            metric.Foreground = new SolidColorBrush(Colors.White);
+            metric.Header = GetType().Name;
+            treeView.Items.Add(metric);
             for (int i = 0; i < strs.Length; i++)
             {
-                Label label = new Label();
-                label.Foreground = checkDelegate.Foreground;
-                label.Margin = new Thickness(300, 30 + i * 20, 0, 0);
-                grid.Children.Add(label);
-                labels.Add(label);
-                label.Content = strs[i];
+                TreeViewItem assembly = new TreeViewItem();
+                assembly.Foreground = new SolidColorBrush(Colors.White);
+                string[] ass = strs[i].Split('\0');
+                assembly.Header = ass[0];
+                metric.Items.Add(assembly);
+                for (int j = 1; j < ass.Length; j++)
+                {
+                    TreeViewItem type = new TreeViewItem();
+                    double num;
+                    if (double.TryParse(ass[j].Substring(ass[j].IndexOf('-') + 1), out num))
+                    {
+                        if (num >= min && num <= max)
+                        {
+                            type.Foreground = new SolidColorBrush(Colors.White);
+                        }
+                        else
+                        {
+                            type.Foreground = new SolidColorBrush(Colors.Red);
+                        }
+                        type.Header = ass[j];
+                    }
+                    else
+                    {
+                        type.Foreground = new SolidColorBrush(Colors.White);
+                        type.Header = ass[j].Substring(0, ass[j].IndexOf('-') + 1) + "0";
+                    }
+                    assembly.Items.Add(type);
+                }
             }
+            comboBox.IsEnabled = true;
+            comboBox.SelectedIndex = 0;
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            StaticMetric.TreeAgrigate(treeView.Items[0] as TreeViewItem, (comboBox.SelectedItem as ComboBoxItem).Content as string, min, max);
         }
 
         private enum Flags

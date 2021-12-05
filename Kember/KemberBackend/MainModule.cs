@@ -42,7 +42,7 @@ namespace Kember
                                 }
                                 else
                                 {
-                                    s += res[i].assembly + (char)(0) + res[i].obj + (char)(0);
+                                    s += res[i].assembly + (char)(0) + res[i].obj + (char)(1);
                                 }
                             }
                             Console.WriteLine(s);
@@ -71,7 +71,7 @@ namespace Kember
                                 }
                                 else
                                 {
-                                    s += res[i].assembly + (char)(0) + res[i].obj + (char)(0);
+                                    s += res[i].assembly + (char)(0) + res[i].obj + (char)(1);
                                 }
                             }
                             Console.WriteLine(s);
