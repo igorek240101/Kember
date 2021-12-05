@@ -1,11 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Net;
-using System.IO;
-using System;
-using System.Diagnostics;
-using System.Collections.Generic;
+using System.Text;
 
 namespace KemberFrontend.View
 {
@@ -13,72 +11,66 @@ namespace KemberFrontend.View
     /// Interaction logic for GeneralWindowControl.
     /// </summary>
     public partial class GeneralWindowControl : UserControl
-    {
-        public static string Token { get; private set; }
+    { 
 
 #if DEBUG
-        public static readonly string UserName = "Igor";
+        public static readonly string UserName = "Alex";
 #else
-        public static readonly string UserName = Environment.MachineName + Environment.UserName;
+        public static readonly string UserName = Environment.UserName;
 #endif
 
         public const string PATH = "D:\\Kember";
 
-        public string uri;
+        public static StreamWriter backInput;
 
-        Process server;
+        public static StreamReader backOutput;
+
+        public static GeneralWindowControl winControl;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GeneralWindowControl"/> class.
         /// </summary>
         public GeneralWindowControl()
         {
+            winControl = this;
+
             InitializeComponent();
 
-            string[] file = Directory.GetFiles(PATH, "KemberServer.exe");
-            if(file.Length == 1)
+            string[] file = Directory.GetFiles(PATH, "KemberBackend.exe");
+            if (file.Length == 1)
             {
                 file = Directory.GetFiles(PATH, "LogDB.db");
                 if (file.Length == 1)
                 {
                     Process process = new Process();
-                    process.StartInfo.FileName = PATH + "\\KemberServer.exe";
-                    //process.StartInfo.CreateNoWindow = true;
+                    process.StartInfo.FileName = PATH + "\\KemberBackend.exe";
+                    process.StartInfo.CreateNoWindow = true;
                     process.StartInfo.RedirectStandardOutput = true;
+                    process.StartInfo.RedirectStandardInput = true;
                     process.StartInfo.UseShellExecute = false;
+                    process.StartInfo.StandardOutputEncoding = Encoding.GetEncoding("CP866");
                     process.Start();
-                    StreamReader reader = process.StandardOutput;
-                    List<string> s = new List<string>();
-                    for(int i = 0; i < 10; i++) reader.ReadLine();
-                    uri = "https://localhost:5001";
+                    backOutput = process.StandardOutput;
+                    backInput = process.StandardInput;
                 }
             }
             else
             {
-                file = Directory.GetFiles(PATH, "uri.txt");
+                MessageBox.Show("Оишбка");
+                throw new Exception();
             }
 
-            WebRequest req = WebRequest.CreateHttp(uri + "/KemberBackModule/Login/" + UserName);
-            req.ContentType = "application/json";
-            req.Method = "GET";
-            try
+            backInput.WriteLine("Login");
+            backInput.WriteLine(UserName);
+            if (backOutput.ReadLine() == "False")
             {
-                WebResponse resp = req.GetResponse();
-                using (var streamWriter = new StreamReader(resp.GetResponseStream()))
-                {
-                    string s = streamWriter.ReadToEnd();
-                    if(s == "")
-                    {
-                        MainFrame.Content = new AutorisationPage(this);
-                    }
-                    else
-                    {
-                        Token = s;
-                        MainFrame.Content = new MainPage();
-                    }
-                }
+                MainFrame.Content = new AutorisationPage();
             }
-            catch (Exception e) { Console.WriteLine(e.GetType().Name + " " + e.Message); }
+            else
+            {
+                MainFrame.Content = new MainPage();
+            }
+
         }
 
     }
