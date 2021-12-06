@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace KemberTeamMetrics
 {
@@ -82,7 +83,13 @@ namespace KemberTeamMetrics
                 if (!types[i].GetTypeInfo().IsClass)
                 {
                     types.RemoveAt(i);
-                    i--;
+                    i--; continue;
+                }
+                object[] array = types[i].GetCustomAttributes(typeof(CompilerGeneratedAttribute), false);
+                if (array != null && array.Length > 0)
+                {
+                    types.RemoveAt(i);
+                    i--; continue;
                 }
             }
             return types;

@@ -8,8 +8,8 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF2C0000" Offset="0"/>
-            <GradientStop Color="#FF160030" Offset="1"/>
+            <GradientStop Color="Transparent" Offset="0"/>
+            <GradientStop Color="Transparent" Offset="1"/>
         </LinearGradientBrush>
     </UserControl.Background>
     <Grid Name="grid">
@@ -19,5 +19,16 @@
         <CheckBox x:Name="checkEnum" Content="Учитывать перечисления" HorizontalAlignment="Left" Margin="42,120,0,0" VerticalAlignment="Top" Foreground="White"/>
         <CheckBox x:Name="checkInterface" Content="Учитывать интерфейсы" HorizontalAlignment="Left" Margin="42,150,0,0" VerticalAlignment="Top" Foreground="White" IsChecked="True"/>
         <CheckBox x:Name="checkStatic" Content="Учитывать статические методы" HorizontalAlignment="Left" Margin="42,180,0,0" VerticalAlignment="Top" Foreground="White" IsChecked="True"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="42,213,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False" SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBoxItem Content="Мин"/>
+            <ComboBoxItem Content="Макс"/>
+            <ComboBoxItem Content="Среднее"/>
+            <ComboBoxItem Content="Мат Ожидание"/>
+            <ComboBoxItem Content="Дисперсия"/>
+            <ComboBoxItem Content="СКО"/>
+        </ComboBox>
+        <TreeView x:Name="treeView" HorizontalAlignment="Left" Height="Auto" Margin="340,30,0,0" VerticalAlignment="Top" Width="390" Background="Transparent" BorderBrush="Transparent">
+
+        </TreeView>
     </Grid>
 </UserControl>

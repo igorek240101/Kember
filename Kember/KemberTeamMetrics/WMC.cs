@@ -117,7 +117,7 @@ namespace KemberTeamMetrics
             List<Type> types = assembly.GetTypes().ToList();
             for (int i = 0; i < types.Count; i++)
             {
-                if ((flags & Flags.StaticClass) == 0 && types[i].IsAbstract && types[i].IsSealed && false) // Требуется уточнение подхода для языков отличных от C$
+                if ((flags & Flags.StaticClass) == 0 && types[i].IsAbstract && types[i].IsSealed && false) // Требуется уточнение подхода для языков отличных от C#
                 {
                     types.RemoveAt(i);
                     i--; continue;
