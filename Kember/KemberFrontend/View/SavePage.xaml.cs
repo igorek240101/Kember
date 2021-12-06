@@ -40,10 +40,12 @@ namespace KemberFrontend.View
             }
             */
             GeneralWindowControl.winControl.MainFrame.Content = autorization;
-            autorization.AutorizationResult(tbKey.Text);
+            autorization.AutorizationResult(tbKey.Password);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
         {
             GeneralWindowControl.winControl.MainFrame.Content = autorization;
         }
