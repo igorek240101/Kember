@@ -65,10 +65,9 @@
                 <TextBlock Name="welcomeText" Text="Введите свой ключ безопастности" TextWrapping="Wrap" Foreground="#FFACB3BF" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
 
-            <PasswordBox x:Name="tbKey" Grid.Row="1" Style="{StaticResource TB}" Margin="25,0,25,105"/>
+            <PasswordBox x:Name="tbKey" Grid.Row="1" Style="{StaticResource TB}" Margin="25,0,25,105" PasswordChanged="tbKey_PasswordChanged"/>
 
-            <TextBlock IsHitTestVisible="False" FontSize="14" Text="Введите ключ"
-                   Grid.Row="1" Margin="37,13,0,0" VerticalAlignment="Top" Foreground="#FF535559">
+            <TextBlock IsHitTestVisible="False" FontSize="14" Text="Введите ключ" Margin="27,181,10,0" VerticalAlignment="Top" Foreground="#FF535559">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
                         <Setter Property="Visibility" Value="Collapsed"/>
