@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KemberBackModule", "KemberBackModule\KemberBackModule.csproj", "{8A1E2CE6-E475-49EC-B934-709A58293166}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KemberInterface", "KemberInterface\KemberInterface.csproj", "{4A5A01A3-3DA7-46FA-8021-42BA7D107B67}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KemberTeamMetrics", "KemberTeamMetrics\KemberTeamMetrics.csproj", "{A1E1261F-57C4-48F3-ABD8-16D31F6DC1D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KemberFrontend", "KemberFrontend\KemberFrontend.csproj", "{2FE198FA-E505-433D-93CA-B2CF979582A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KemberTeamVisualMetrics", "KemberTeamVisualMetrics\KemberTeamVisualMetrics.csproj", "{76CBA40D-39DE-4AEE-87B3-065157F4B516}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KemberBackend", "KemberBackend\KemberBackend.csproj", "{095D7C2D-A95F-4BB4-A79A-78DEE74994CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +19,31 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8A1E2CE6-E475-49EC-B934-709A58293166}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A1E2CE6-E475-49EC-B934-709A58293166}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A1E2CE6-E475-49EC-B934-709A58293166}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A1E2CE6-E475-49EC-B934-709A58293166}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A5A01A3-3DA7-46FA-8021-42BA7D107B67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A5A01A3-3DA7-46FA-8021-42BA7D107B67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A5A01A3-3DA7-46FA-8021-42BA7D107B67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A5A01A3-3DA7-46FA-8021-42BA7D107B67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1E1261F-57C4-48F3-ABD8-16D31F6DC1D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1E1261F-57C4-48F3-ABD8-16D31F6DC1D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1E1261F-57C4-48F3-ABD8-16D31F6DC1D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1E1261F-57C4-48F3-ABD8-16D31F6DC1D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FE198FA-E505-433D-93CA-B2CF979582A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FE198FA-E505-433D-93CA-B2CF979582A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FE198FA-E505-433D-93CA-B2CF979582A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FE198FA-E505-433D-93CA-B2CF979582A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76CBA40D-39DE-4AEE-87B3-065157F4B516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76CBA40D-39DE-4AEE-87B3-065157F4B516}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76CBA40D-39DE-4AEE-87B3-065157F4B516}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76CBA40D-39DE-4AEE-87B3-065157F4B516}.Release|Any CPU.Build.0 = Release|Any CPU
+		{095D7C2D-A95F-4BB4-A79A-78DEE74994CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{095D7C2D-A95F-4BB4-A79A-78DEE74994CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{095D7C2D-A95F-4BB4-A79A-78DEE74994CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{095D7C2D-A95F-4BB4-A79A-78DEE74994CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2D462FAF-941B-40FC-B5B9-0DD825BC300F}
+		SolutionGuid = {D8BF0584-ECD7-4F99-A1B8-C8379A34A7BE}
 	EndGlobalSection
 EndGlobal
