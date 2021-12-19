@@ -36,12 +36,16 @@ namespace KemberFrontend.View
             {
                 GeneralWindowControl.backInput.WriteLine("Loading");
                 GeneralWindowControl.backInput.WriteLine(MainPage.key);
-                string[] s = GeneralWindowControl.backOutput.ReadLine().Split((char)2);
-                foreach (var value in s)
+                string res = GeneralWindowControl.backOutput.ReadLine();
+                if (res != "")
                 {
-                    string[] subs = value.Split('\0');
-                    dictionary.Add(subs[1], int.Parse(subs[0]));
-                    listbox.Items.Add(subs[1]);
+                    string[] s = res.Split((char)2);
+                    foreach (var value in s)
+                    {
+                        string[] subs = value.Split('\0');
+                        dictionary.Add(subs[1], int.Parse(subs[0]));
+                        listbox.Items.Add(subs[1]);
+                    }
                 }
             }
         }
@@ -51,12 +55,16 @@ namespace KemberFrontend.View
             MainPage.key = key;
             GeneralWindowControl.backInput.WriteLine("Loading");
             GeneralWindowControl.backInput.WriteLine(MainPage.key);
-            string[] s = GeneralWindowControl.backOutput.ReadLine().Split((char)2);
-            foreach (var value in s)
+            string res = GeneralWindowControl.backOutput.ReadLine();
+            if (res != "")
             {
-                string[] subs = value.Split('\0');
-                dictionary.Add(subs[1], int.Parse(subs[0]));
-                listbox.Items.Add(subs[1]);
+                string[] s = res.Split((char)2);
+                foreach (var value in s)
+                {
+                    string[] subs = value.Split('\0');
+                    dictionary.Add(subs[1], int.Parse(subs[0]));
+                    listbox.Items.Add(subs[1]);
+                }
             }
         }
 
