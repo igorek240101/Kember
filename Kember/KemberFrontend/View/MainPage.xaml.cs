@@ -189,6 +189,7 @@ namespace KemberFrontend.View
             fileDialog.DefaultExt = "dll";
             fileDialog.Multiselect = true;
             fileDialog.FileOk += new System.ComponentModel.CancelEventHandler(FileOk);
+            fileDialog.Filter = "dll files(*.dll) | *.dll";
             fileDialog.ShowDialog();
         }
 
