@@ -26,7 +26,7 @@ namespace KemberTeamMetrics
                         count++;
                         type = type.BaseType;
                     }
-                    res[i] = (types[i].Name, count);
+                    res[i] = (CleanTypeName(types[i]), count);
                 }
                 mainRes[k] = new metric(res, assembly.GetName().Name);
             }
@@ -80,7 +80,7 @@ namespace KemberTeamMetrics
             List<Type> types = assembly.GetTypes().ToList();
             for (int i = 0; i < types.Count; i++)
             {
-                if (!types[i].GetTypeInfo().IsClass)
+                if (!types[i].GetTypeInfo().IsClass || typeof(Delegate).IsAssignableFrom(types[i].BaseType))
                 {
                     types.RemoveAt(i);
                     i--; continue;
