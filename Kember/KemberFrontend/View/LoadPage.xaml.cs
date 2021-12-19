@@ -72,5 +72,11 @@ namespace KemberFrontend.View
                 MainPage.page.Loading((listbox.SelectedItem as string).Split('-')[0],s);
             }
         }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            GeneralWindowControl.winControl.MainFrame.Content = MainPage.page;
+
+        }
     }
 }

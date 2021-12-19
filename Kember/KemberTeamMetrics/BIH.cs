@@ -54,7 +54,14 @@ namespace KemberTeamMetrics
                             }
                             privateMethods = privateMethodInfos.ToArray();
                         }
-                        res[i] = (TypeClassification(types[i]), CleanTypeName(types[i]), ((double)(methods.Length - privateMethods.Length)) / methods.Length);
+                        if (privateMethods.Length != 0)
+                        {
+                            res[i] = (TypeClassification(types[i]), CleanTypeName(types[i]), ((double)methods.Length) / privateMethods.Length);
+                        }
+                        else
+                        {
+                            res[i] = (TypeClassification(types[i]), CleanTypeName(types[i]), 0);
+                        }
                     }
                 }
                 mainRes[k] = new metric(res, assembly.GetName().Name);

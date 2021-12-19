@@ -8,6 +8,7 @@ namespace KemberMetricTest
 {
     public class WMC
     {
+        /*
 
         Assembly assembly;
         KemberTeamMetrics.WMC wmc = new KemberTeamMetrics.WMC();
@@ -345,5 +346,7 @@ namespace KemberMetricTest
             res = metrics.FirstOrDefault(t => t.Item2 == "Class31").Item3;
             Assert.AreEqual(0, res);
         }
+
+        */
     }
 }
