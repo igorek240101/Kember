@@ -60,7 +60,7 @@ namespace KemberFrontend.View
             }
             else
             {
-                MessageBox.Show("Оишбка");
+                MessageBox.Show("Ошибка");
                 throw new Exception();
             }
 
