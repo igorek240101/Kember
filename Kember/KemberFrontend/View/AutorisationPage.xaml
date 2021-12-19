@@ -20,7 +20,7 @@
     </UserControl.Background>
 
     <UserControl.Resources>
-        <Style x:Key="TB" TargetType="TextBox">
+        <Style x:Key="TB" TargetType="PasswordBox">
             <Setter Property="Background" Value="#FF11141A"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Height" Value="35"/>
@@ -30,7 +30,7 @@
             <Setter Property="Padding" Value="10,0,0,0"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="TextBox">
+                    <ControlTemplate TargetType="PasswordBox">
                         <Grid x:Name="root" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" SnapsToDevicePixels="True">
                             <Border x:Name="Background" BorderThickness="1" CornerRadius="2" Background="{TemplateBinding Background}"
                                     BorderBrush="{TemplateBinding BorderBrush}"/>
@@ -72,14 +72,14 @@
                            VerticalAlignment="Center"/>
             </Grid>
 
-            <TextBox x:Name="tbKey" Grid.Row="1" Style="{StaticResource TB}" Margin="25,0,25,55"/>
+            <PasswordBox x:Name="tbKey" Grid.Row="1" Style="{StaticResource TB}" Margin="25,0,25,55"/>
             <TextBlock IsHitTestVisible="False" FontSize="14" Text="Введите ключ"
                    Grid.Row="1" Margin="37,13,0,0" VerticalAlignment="Top" Foreground="#FF535559">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
                         <Setter Property="Visibility" Value="Collapsed"/>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding Text, ElementName=tbKey}" Value="">
+                            <DataTrigger Binding="{Binding Password, ElementName=tbKey}" Value="">
                                 <Setter Property="Visibility" Value="Visible"/>
                             </DataTrigger>
                         </Style.Triggers>
