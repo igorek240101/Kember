@@ -23,7 +23,7 @@ namespace Kember
 #if DEBUG
         public static User user;
 #else
-        private static List<(string, DateTime, string)> saves = new List<(string, DateTime, string)>();
+        private static User user;
 #endif
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace Kember
 #if DEBUG
         public static List<Metric> metrics = new List<Metric>();
 #else
-        private static List<IMetric> metrics = new List<IMetric>();
+        private static List<Metric> metrics = new List<Metric>();
 #endif
 
         static KemberBackModule()
@@ -177,7 +177,7 @@ namespace Kember
                     }
                 }
             }
-            catch (Exception e) { throw; }
+            catch { throw; }
         }
 
 

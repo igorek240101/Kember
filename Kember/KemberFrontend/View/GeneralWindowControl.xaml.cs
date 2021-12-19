@@ -44,7 +44,11 @@ namespace KemberFrontend.View
                 {
                     Process process = new Process();
                     process.StartInfo.FileName = PATH + "\\KemberBackend.exe";
+#if DEBUG
                     process.StartInfo.CreateNoWindow = false;
+#else
+                    process.StartInfo.CreateNoWindow = true;
+#endif
                     process.StartInfo.RedirectStandardOutput = true;
                     process.StartInfo.RedirectStandardInput = true;
                     process.StartInfo.UseShellExecute = false;
