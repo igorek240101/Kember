@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace KemberFrontend.View
 {
@@ -43,8 +32,12 @@ namespace KemberFrontend.View
                     foreach (var value in s)
                     {
                         string[] subs = value.Split('\0');
-                        dictionary.Add(subs[1], int.Parse(subs[0]));
-                        listbox.Items.Add(subs[1]);
+                        try
+                        {
+                            dictionary.Add(subs[1], int.Parse(subs[0]));
+                            listbox.Items.Add(subs[1]);
+                        }
+                        catch { }
                     }
                 }
             }
@@ -62,8 +55,12 @@ namespace KemberFrontend.View
                 foreach (var value in s)
                 {
                     string[] subs = value.Split('\0');
-                    dictionary.Add(subs[1], int.Parse(subs[0]));
-                    listbox.Items.Add(subs[1]);
+                    try
+                    {
+                        dictionary.Add(subs[1], int.Parse(subs[0]));
+                        listbox.Items.Add(subs[1]);
+                    }
+                    catch { }
                 }
             }
         }
@@ -77,7 +74,7 @@ namespace KemberFrontend.View
                 GeneralWindowControl.backInput.WriteLine(dictionary[listbox.SelectedItem as string]);
                 string s = GeneralWindowControl.backOutput.ReadLine();
                 GeneralWindowControl.winControl.MainFrame.Content = MainPage.page;
-                MainPage.page.Loading((listbox.SelectedItem as string).Split('-')[0],s);
+                MainPage.page.Loading((listbox.SelectedItem as string).Split('-')[0], s);
             }
         }
 

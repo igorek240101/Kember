@@ -174,8 +174,11 @@ namespace Kember
                     using (StreamWriter encryptWriter = new(cryptoStream))
                     {
                         encryptWriter.WriteLine(text);
+                        encryptWriter.Close();
                     }
+                    cryptoStream.Close();
                 }
+                file.Close();
             }
             catch { throw; }
         }
@@ -209,7 +212,11 @@ namespace Kember
             byte[] key = Encoding.UTF8.GetBytes(skey + skey + skey + skey);
             CryptoStream cryptoStream = new(fileStream, aes.CreateDecryptor(key, iv), CryptoStreamMode.Read);
             StreamReader decryptReader = new(cryptoStream);
-            return decryptReader.ReadToEnd();
+            string text = decryptReader.ReadToEnd();
+            fileStream.Close();
+            cryptoStream.Close();
+            decryptReader.Close();
+            return text;
         }
 
 
