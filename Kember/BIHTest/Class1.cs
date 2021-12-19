@@ -1,90 +1,66 @@
 ﻿using System;
 
-namespace TestApp1
+namespace BIHTest
 {
     public class Class1
     {
-        private void Meth1(){ }
-        public void Meth2() { } 
+        private void Meth1(int i) { }
+        public void Meth2(string j) { }
         protected void Meth3() { }
     }
 
     public class Class2 : Class1
     {
-        private void Meth4() { }
+        private void Meth4(int f) { }
     }
 
     public class Class3
     {
         public void Meth1() { }
 
-        public void Meth2() { }
+        private void Meth2() { }
     }
 
     public class Class4 : Class3
     {
-        public void Meth3() { }
+        public void Meth3(string j) { }
     }
 
     public class Class5
     {
-        protected void Meth1() { }
+        protected void Meth1(int i, int f, string j) { }
     }
 
     public class Class6 : Class5
     {
         public void Meth2() { }
+
+        public void Meth3() { }
+
+        public void Meth4() { }
+
+        private void Meth5() { }
     }
 
     public class Class7 : Object
     {
-        public void Meth2() { }
+        public void Meth2(object o) { }
     }
 
     public class Class8<T>
     {
-        public void Meth2() { }
+        public void Meth2(T t) { }
     }
 
     public class Class9
     {
-        public void Meth2<T>() { }
-    }
-
-    internal class Class10
-    {
-        public void Meth2() { }
-    }
-
-    public class Class11
-    {
-        public void Meth()
-        {
-            var aType = new { a = 10, s = "N" };
-        }
-    }
-
-    public class Class12
-    {
-        delegate int Class13();
-
-        Class13 GetF = delegate ()
-        {
-            return 0;
-        };
-    }
-
-    public class Class14
-    {
-        delegate int Class15(string s);
-
-        Class15 GetF = s => s.Length;
+        public T Meth2<T>(T t) { return t; }
     }
 
     public class Class16
     {
         public void Meth() { }
-        public void Meth(string s) { }
+        private void Meth(string s, Type t) { }
     }
 
     public class Class17
@@ -94,17 +70,17 @@ namespace TestApp1
 
     public interface Class18
     {
-        public void Meth();
+        public void Meth(int i);
     }
 
     public interface Class19
     {
-        public void Meth() { }
+        protected void Meth(float f) { }
     }
 
     public struct Class20
     {
-        public void Meth() { }
+        public void Meth(decimal d) { }
     }
 
     public enum Class21
@@ -127,33 +103,27 @@ namespace TestApp1
     {
         public int Property
         {
-            get { return 0; }
+            private get { return 0; }
             set { return; }
         }
     }
-
-    public class Class26
-    {
-        public static void Meth() { }
-    }
-
     public static class Class27
     {
-        public static void Meth() { }
+        public static void Meth(string s) { }
     }
 
     public abstract class Class28
     {
-        public abstract void Meth();
+        public abstract void Meth(int i, string s, float f, float ff, decimal d);
 
-        public abstract void Meth(int i);
+        protected abstract void Meth(int i, string s, float f, float ff);
 
-        public void Meth(string s) { }
+        private void Meth(string s, float f) { }
     }
 
     public class Class29
-    { 
-        int this [int i]
+    {
+        private int this[int i]
         {
             get
             {
