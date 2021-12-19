@@ -22,7 +22,7 @@ namespace KemberFrontend.View
             {
                 GeneralWindowControl.backInput.WriteLine("Registration");
                 GeneralWindowControl.backInput.WriteLine(GeneralWindowControl.UserName);
-                GeneralWindowControl.backInput.WriteLine(tbKey.Text);
+                GeneralWindowControl.backInput.WriteLine(tbKey.Password);
                 if (GeneralWindowControl.backOutput.ReadLine() == "True")
                 {
                     GeneralWindowControl.winControl.MainFrame.Content = new MainPage();

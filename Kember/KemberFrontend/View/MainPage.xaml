@@ -141,7 +141,7 @@
                     <Button Name="PlayBtn" Template="{StaticResource ResourceKey=TopMenuButtons}" Content="ЗАПУСТИТЬ" IsEnabled="False"/>
                     <Button Name="RemoveBtn" Template="{StaticResource ResourceKey=TopMenuButtons}" Content="УДАЛИТЬ"/>
                     <Button Name="LoadBtn" Template="{StaticResource ResourceKey=TopMenuButtons}" Content="ЗАГРУЗИТЬ"/>
-                    <Button Name="SaveBtn" Template="{StaticResource ResourceKey=TopMenuButtons}" Content="СОХРАНИТЬ"/>
+                    <Button Name="SaveBtn" Template="{StaticResource ResourceKey=TopMenuButtons}" Content="СОХРАНИТЬ" IsEnabled="False"/>
                     
 
 

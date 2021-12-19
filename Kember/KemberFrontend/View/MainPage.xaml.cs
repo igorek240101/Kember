@@ -177,6 +177,7 @@ namespace KemberFrontend.View
                     GeneralWindowControl.backInput.WriteLine(now.GetType().Name);
                     string s = GeneralWindowControl.backOutput.ReadLine();
                     now.SetResult(s);
+                    SaveBtn.IsEnabled = true;
                 }
             }
             catch (Exception ex) { Console.WriteLine(ex.GetType().Name + " " + ex.Message); }
@@ -204,6 +205,7 @@ namespace KemberFrontend.View
                 if (GeneralWindowControl.backOutput.ReadLine() == "True")
                 {
                     MessageBox.Show("Сохранение прошло успешно");
+                    SaveBtn.IsEnabled = false;
                 }
             }
         }
@@ -233,12 +235,18 @@ namespace KemberFrontend.View
 
         public void AutorizationResult(string s)
         {
-            key = s;
             GeneralWindowControl.backInput.WriteLine("Save");
-            GeneralWindowControl.backInput.WriteLine(key);
+            GeneralWindowControl.backInput.WriteLine(s);
             if (GeneralWindowControl.backOutput.ReadLine() == "True")
             {
                 MessageBox.Show("Сохранение прошло успешно");
+                key = s;
+                SaveBtn.IsEnabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Введен неверный ключ");
+                GeneralWindowControl.winControl.MainFrame.Content = new SavePage(this);
             }
         }
 
