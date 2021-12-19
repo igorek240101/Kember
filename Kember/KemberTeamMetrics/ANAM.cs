@@ -49,7 +49,10 @@ namespace KemberTeamMetrics
                         {
                             sum += value.GetParameters().Length;
                         }
+                        if(methods.Length != 0)
                         res[i] = (TypeClassification(types[i]), CleanTypeName(types[i]), ((double)sum) / methods.Length);
+                        else
+                        res[i] = (TypeClassification(types[i]), CleanTypeName(types[i]), 0);
                     }
                 }
                 mainRes[k] = new metric(res, assembly.GetName().Name);
