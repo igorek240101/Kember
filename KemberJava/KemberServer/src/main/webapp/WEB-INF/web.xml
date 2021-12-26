@@ -13,6 +13,24 @@
     <servlet-name>RegistrationServlet</servlet-name>
     <servlet-class>servlets.RegistrationServlet</servlet-class>
   </servlet>
+
+  <servlet>
+    <servlet-name>InvokeServlet</servlet-name>
+    <servlet-class>servlets.InvokeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Loading</servlet-name>
+    <servlet-class>servlets.Loading</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>LoadServlet</servlet-name>
+    <servlet-class>servlets.LoadServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SavedInvokeServlet</servlet-name>
+    <servlet-class>servlets.SavedInvokeServlet</servlet-class>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
@@ -23,5 +41,24 @@
     <servlet-name>RegistrationServlet</servlet-name>
     <url-pattern>/Registration</url-pattern>
   </servlet-mapping>
-  
+
+  <servlet-mapping>
+    <servlet-name>InvokeServlet</servlet-name>
+    <url-pattern>/Invoke</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>Loading</servlet-name>
+    <url-pattern>/Loading</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>LoadServlet</servlet-name>
+    <url-pattern>/Load</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>SavedInvokeServlet</servlet-name>
+    <url-pattern>/SavedInvoke</url-pattern>
+  </servlet-mapping>
 </web-app>

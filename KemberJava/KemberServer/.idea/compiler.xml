@@ -6,8 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="KemberServer" />
+        <module name="Kember" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="KemberServer" target="9" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Kember" options="--add-modules java.base,java.sql" />
+    </option>
   </component>
 </project>
