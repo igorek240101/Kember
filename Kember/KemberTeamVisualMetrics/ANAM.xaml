@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="KemberTeamVisualMetrics.ANAM"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:KemberTeamVisualMetrics"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Transparent" Offset="0"/>
+            <GradientStop Color="Transparent" Offset="1"/>
+        </LinearGradientBrush>
+    </UserControl.Background>
+
+    <Grid Name="grid">
+        <CheckBox x:Name="checkDelegate" Content="Учитывать делегаты как типы данных" HorizontalAlignment="Left" Margin="42,30,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <CheckBox x:Name="checkStruct" Content="Учитывать структуры" HorizontalAlignment="Left" Margin="42,60,0,0" VerticalAlignment="Top" Foreground="White" IsChecked="True"/>
+        <CheckBox x:Name="checkNested" Content="Учитывать вложенные типы" HorizontalAlignment="Left" Margin="42,90,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <CheckBox x:Name="checkEnum" Content="Учитывать перечисления" HorizontalAlignment="Left" Margin="42,120,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <CheckBox x:Name="checkInterface" Content="Учитывать интерфейсы" HorizontalAlignment="Left" Margin="42,150,0,0" VerticalAlignment="Top" Foreground="White" IsChecked="True"/>
+        <CheckBox x:Name="checkPrivate" Content="Учитывать все видимости (иначе только публичные)" HorizontalAlignment="Left" Margin="42,180,0,0" VerticalAlignment="Top" Foreground="White" IsChecked="True"/>
+        <CheckBox x:Name="checkStatic" Content="Учитывать статические методы" HorizontalAlignment="Left" Margin="42,210,0,0" VerticalAlignment="Top" Foreground="White" IsChecked="True"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="42,245,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False" SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBoxItem Content="Мин"/>
+            <ComboBoxItem Content="Макс"/>
+            <ComboBoxItem Content="Среднее"/>
+            <ComboBoxItem Content="Мат Ожидание"/>
+            <ComboBoxItem Content="Дисперсия"/>
+            <ComboBoxItem Content="СКО"/>
+        </ComboBox>
+        <TreeView x:Name="treeView" HorizontalAlignment="Left" Height="Auto" Margin="340,30,0,0" VerticalAlignment="Top" Width="390" Background="Transparent" BorderBrush="Transparent">
+
+        </TreeView>
+    </Grid>
+</UserControl>
