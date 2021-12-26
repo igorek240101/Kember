@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="128fd2fb-95be-4009-a788-e69910b802f3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/KemberClient.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/IMetric.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/MainWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/WMC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/target/Kember.war" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/target/Kember.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/target/Kember/WEB-INF/classes/servlets/RegistrationServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/target/Kember/WEB-INF/classes/servlets/RegistrationServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/target/Kember/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/target/Kember/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/target/classes/servlets/RegistrationServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/target/classes/servlets/RegistrationServlet.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="22pXTo5bV2dVGmoh0aqWkfY46Zh" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../KemberServer" />
+  </component>
+  <component name="RunManager">
+    <configuration name="KemberClient" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="gui.MainWindow" />
+      <module name="KemberClient" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="128fd2fb-95be-4009-a788-e69910b802f3" name="Changes" comment="" />
+      <created>1640535518916</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1640535518916</updated>
+      <workItem from="1640535525890" duration="17429000" />
+      <workItem from="1640553179170" duration="23000" />
+      <workItem from="1640553544901" duration="641000" />
+      <workItem from="1640555802928" duration="643000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/gui/MainWindow.java</url>
+          <line>118</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/gui/MainWindow.java</url>
+          <line>138</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/gui/MainWindow.java</url>
+          <line>147</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
