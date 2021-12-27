@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="128fd2fb-95be-4009-a788-e69910b802f3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/gui/ANAM.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/BIH.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/DIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/NOC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/RegForm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/WMC2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kember/KemberBackend/MainModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kember/KemberBackend/MainModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kember/KemberTeamMetrics/ANAM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kember/KemberTeamMetrics/ANAM.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kember/KemberTeamMetrics/BIH.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kember/KemberTeamMetrics/BIH.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kember/KemberTeamMetrics/DIT.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kember/KemberTeamMetrics/DIT.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kember/KemberTeamMetrics/NOC.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kember/KemberTeamMetrics/NOC.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kember/KemberTeamMetrics/WMC.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kember/KemberTeamMetrics/WMC.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Kember/KemberTeamMetrics/WMC2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Kember/KemberTeamMetrics/WMC2.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KemberClient/gui/MainWindow$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KemberClient/gui/MainWindow$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KemberClient/gui/MainWindow$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KemberClient/gui/MainWindow$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KemberClient/gui/MainWindow$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KemberClient/gui/MainWindow$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KemberClient/gui/MainWindow$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KemberClient/gui/MainWindow$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KemberClient/gui/MainWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KemberClient/gui/MainWindow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KemberClient/gui/WMC.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KemberClient/gui/WMC.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/MainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/WMC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/WMC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/src/main/java/servlets/InvokeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/src/main/java/servlets/InvokeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/src/main/java/servlets/LoadServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/src/main/java/servlets/LoadServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/src/main/java/servlets/Loading.java" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/src/main/java/servlets/Loading.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/src/main/java/servlets/SavedInvokeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/src/main/java/servlets/SavedInvokeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/target/Kember.war" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/target/Kember.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/target/Kember/WEB-INF/classes/servlets/InvokeServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/target/Kember/WEB-INF/classes/servlets/InvokeServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/target/Kember/WEB-INF/classes/servlets/LoadServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/target/Kember/WEB-INF/classes/servlets/LoadServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/target/Kember/WEB-INF/classes/servlets/Loading.class" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/target/Kember/WEB-INF/classes/servlets/Loading.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/target/Kember/WEB-INF/classes/servlets/SavedInvokeServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/target/Kember/WEB-INF/classes/servlets/SavedInvokeServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/target/classes/servlets/InvokeServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/target/classes/servlets/InvokeServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/target/classes/servlets/LoadServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/target/classes/servlets/LoadServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/target/classes/servlets/Loading.class" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/target/classes/servlets/Loading.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KemberServer/target/classes/servlets/SavedInvokeServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../KemberServer/target/classes/servlets/SavedInvokeServlet.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="22pXTo5bV2dVGmoh0aqWkfY46Zh" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../KemberServer" />
+  </component>
+  <component name="RunManager">
+    <configuration name="KemberClient" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="gui.MainWindow" />
+      <module name="KemberClient" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="128fd2fb-95be-4009-a788-e69910b802f3" name="Changes" comment="" />
+      <created>1640535518916</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1640535518916</updated>
+      <workItem from="1640535525890" duration="17429000" />
+      <workItem from="1640553179170" duration="23000" />
+      <workItem from="1640553544901" duration="641000" />
+      <workItem from="1640555802928" duration="23321000" />
+      <workItem from="1640589715422" duration="774000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/gui/RegForm.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
